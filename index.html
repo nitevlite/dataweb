@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="DataTool erkennt Antworten in ausgefüllten Fragebögen, unterstützt die gezielte Kontrolle und exportiert geprüfte Ergebnisse – lokal, sicher und ohne Datenübertragung nach außen."
+    />
+    <title>DataTool – Fragebögen automatisch auswerten</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./index.html" aria-label="The Repetitive Company – Startseite">
+        <img
+          src="./company-logo.png"
+          alt="The Repetitive Company"
+          width="1075"
+          height="334"
+        />
+      </a>
+      <nav class="header-nav" id="headerNav" aria-label="Seitennavigation">
+        <a href="#scrollStory">Ablauf</a>
+        <a href="#solutions">
+          <span class="desktop-nav-label">Enthaltene Anwendungen</span>
+          <span class="mobile-nav-label" aria-hidden="true">Im Paket</span>
+        </a>
+        <a href="#export-formats" data-story-progress="0.94">
+          <span class="desktop-nav-label">Exportformate</span>
+          <span class="mobile-nav-label" aria-hidden="true">Export</span>
+        </a>
+        <a href="#datenschutz">DSGVO</a>
+        <a href="#preis">Preis</a>
+        <a class="solutions-link" href="#solutions">Lösungen ansehen</a>
+      </nav>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="headerNav"
+      >
+        <span class="menu-toggle-icon" aria-hidden="true">
+          <i></i><i></i><i></i>
+        </span>
+        <span>Menü</span>
+      </button>
+    </header>
+
+    <main>
+      <section class="intro" aria-labelledby="intro-title">
+        <p class="eyebrow">Automatische Fragebogenauswertung</p>
+        <h1 id="intro-title">Aus Fragebögen werden verlässliche Daten.</h1>
+        <p>
+          Vom ausgefüllten Fragebogen bis zum geprüften Datensatz – ohne
+          mühsames Abtippen und mit voller Kontrolle über jedes Ergebnis.
+        </p>
+        <a class="cta-button hero-cta solutions-link" href="#solutions">
+          Lösungen ansehen
+        </a>
+      </section>
+
+      <section class="scroll-story" id="scrollStory" aria-label="Animierter Auswertungsablauf">
+        <div class="stage">
+          <div class="copy story-copy" id="storyCopy" aria-live="polite">
+            <p class="step-label" id="stepLabel">Schritt 1 von 4</p>
+            <h2 id="phaseTitle">Fragebögen automatisch auswerten.</h2>
+            <p id="phaseText">
+              Ob einzeln oder in großer Zahl: DataTool verarbeitet Ihre
+              ausgefüllten Dokumente in einem einheitlichen Ablauf.
+            </p>
+            <a class="story-try-link" href="./datatool.html?demo=1">
+              Jetzt ausprobieren <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div class="export-copy" id="exportCopy">
+            <p class="step-label">Schritt 4 von 4</p>
+            <h2>Bereit für Ihre nächsten Schritte.</h2>
+            <p>
+              Übergeben Sie die geprüften Daten an Tabellen,
+              Statistikprogramme oder Ihre Dokumentation – im passenden
+              Format und ohne erneute Übertragung.
+            </p>
+            <a class="story-try-link" href="./datatool.html?demo=1">
+              Jetzt ausprobieren <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          <div class="visual-shell">
+            <div class="scene" id="scene" aria-hidden="true">
+              <div class="scene-content" id="sceneContent">
+                <div class="scene-backdrop"></div>
+
+                <img
+                  class="scene-layer document-layer filled-page"
+                  src="./bild-02-fragebogen-ausgefuellt-clean-alpha.png"
+                  alt=""
+                  draggable="false"
+                />
+                <img
+                  class="scene-layer falling-page"
+                  id="fallingPage"
+                  src="./bild-01-fragebogen-leer-v2-alpha.png"
+                  alt=""
+                  draggable="false"
+                />
+
+                <svg
+                  class="scene-layer frames-layer"
+                  viewBox="0 0 1254 1254"
+                  role="presentation"
+                >
+                  <rect class="overlay-item detected" data-enter="left" x="509" y="218" width="110" height="56" rx="3" />
+                  <rect class="overlay-item detected" data-enter="right" x="619" y="274" width="112" height="56" rx="3" />
+                  <rect class="overlay-item corrected" data-enter="left" x="731" y="330" width="111" height="55" rx="3" />
+                  <rect class="overlay-item detected" data-enter="right" x="842" y="385" width="109" height="56" rx="3" />
+                  <rect class="overlay-item detected" data-enter="top" x="745" y="570" width="78" height="56" rx="3" />
+                  <rect class="overlay-item detected" data-enter="left" x="795" y="726" width="89" height="51" rx="3" />
+                  <rect class="overlay-item detected" data-enter="right" x="614" y="777" width="91" height="54" rx="3" />
+                  <rect class="overlay-item detected" data-enter="left" x="884" y="831" width="90" height="54" rx="3" />
+                  <rect class="overlay-item detected" data-enter="right" x="974" y="885" width="84" height="53" rx="3" />
+                  <rect class="overlay-item conflict-row" data-enter="bottom" x="449" y="938" width="609" height="52" rx="3" />
+                  <rect class="overlay-item detected checkbox-hit" data-enter="left" x="202" y="1058" width="24" height="24" rx="2" />
+                  <rect class="overlay-item corrected checkbox-hit" data-enter="bottom" x="202" y="1138" width="24" height="23" rx="2" />
+                  <rect class="overlay-item detected checkbox-hit" data-enter="right" x="641" y="1098" width="24" height="24" rx="2" />
+                </svg>
+
+                <div class="results-layer" id="resultsLayer">
+                  <div class="result-card">
+                    <span>Fragebögen ausgewertet</span>
+                    <strong>987</strong>
+                  </div>
+                  <div class="result-card">
+                    <span>Kommentare erfasst</span>
+                    <strong>146</strong>
+                  </div>
+                  <div class="result-card">
+                    <span>Zur Kontrolle markiert</span>
+                    <strong>12</strong>
+                  </div>
+                </div>
+              </div>
+
+              <div class="export-panel" id="exportPanel">
+                <span id="export-formats" class="anchor-target" aria-hidden="true"></span>
+                <div class="export-heading">
+                  <span>Direkt weiterarbeiten</span>
+                  <strong>Passendes Format auswählen</strong>
+                </div>
+                <div class="export-grid">
+                  <article class="format-card format-card--red">
+                    <span class="format-icon">XLS</span>
+                    <div>
+                      <h3>Tabellen</h3>
+                      <p>Excel · CSV · TSV</p>
+                    </div>
+                  </article>
+                  <article class="format-card format-card--violet">
+                    <span class="format-icon">STAT</span>
+                    <div>
+                      <h3 aria-label="Statistikprogramme">
+                        <span class="desktop-format-label">Statistikprogramme</span>
+                        <span class="mobile-format-label" aria-hidden="true">Statistik</span>
+                      </h3>
+                      <p>SPSS · R · SAS · Stata</p>
+                    </div>
+                  </article>
+                  <article class="format-card format-card--green">
+                    <span class="format-icon">DATA</span>
+                    <div>
+                      <h3 aria-label="Datenaustausch">
+                        <span class="desktop-format-label">Datenaustausch</span>
+                        <span class="mobile-format-label" aria-hidden="true">Daten</span>
+                      </h3>
+                      <p>JSON · XML · TXT</p>
+                    </div>
+                  </article>
+                  <article class="format-card format-card--amber">
+                    <span class="format-icon">DOC</span>
+                    <div>
+                      <h3 aria-label="Dokumentation">
+                        <span class="desktop-format-label">Dokumentation</span>
+                        <span class="mobile-format-label" aria-hidden="true">Berichte</span>
+                      </h3>
+                      <p>HTML · LaTeX · Markdown · Eigener Bericht</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ol class="timeline" aria-label="Fortschritt">
+            <li class="active"><span>01</span> Import</li>
+            <li><span>02</span> Erkennung</li>
+            <li><span>03</span> Kontrolle</li>
+            <li><span>04</span> Export</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="suite-section" id="solutions" aria-labelledby="suite-title">
+        <div class="suite-intro">
+          <p class="eyebrow">Ein Paket. Alle Werkzeuge.</p>
+          <h2 id="suite-title">Der vollständige Workflow ist bereits dabei.</h2>
+          <p>
+            Mit DataTool erhalten Sie nicht nur die Fragebogenauswertung.
+            Auch die Werkzeuge zur Vorbereitung Ihrer PDF-Dokumente sind im
+            Paket enthalten – ohne zusätzliche Einzelkäufe.
+          </p>
+        </div>
+
+        <div class="suite-grid">
+          <a class="suite-card suite-card--pdf" href="./pdf-toolkit.html">
+            <span class="suite-app-icon" aria-hidden="true"><i></i></span>
+            <p class="suite-label">PDF Toolkit</p>
+            <h3>Dokumente passend vorbereiten.</h3>
+            <p>
+              PDFs aufteilen, bestimmte Seiten entfernen oder mehrere
+              Dokumente in der gewünschten Reihenfolge zusammenführen.
+            </p>
+            <span class="suite-card-link">PDF Toolkit öffnen <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="suite-card suite-card--datatool suite-card--featured" href="./datatool.html">
+            <span class="suite-app-icon" aria-hidden="true"><i></i></span>
+            <p class="suite-label">DataTool</p>
+            <h3>Antworten erkennen und weiterverwenden.</h3>
+            <p>
+              Fragebögen auswerten, auffällige Ergebnisse gezielt prüfen und
+              geprüfte Daten im benötigten Format exportieren.
+            </p>
+            <span class="suite-card-link">DataTool öffnen <span aria-hidden="true">→</span></span>
+          </a>
+
+          <a class="suite-card suite-card--corner" href="./eckensetzer.html">
+            <span class="suite-app-icon" aria-hidden="true"><i></i></span>
+            <p class="suite-label">Eckensetzer</p>
+            <h3>Fragebögen für den Ausdruck vorbereiten.</h3>
+            <p>
+              Eckmarkierungen einmal auf dem leeren Original positionieren
+              und auf alle Seiten anwenden – anschließend drucken, ausfüllen
+              und einscannen.
+            </p>
+            <span class="suite-card-link">Eckensetzer öffnen <span aria-hidden="true">→</span></span>
+          </a>
+        </div>
+
+        <p class="suite-note">
+          <span aria-hidden="true">✓</span>
+          Alle enthaltenen Anwendungen lassen sich bequem über eine gemeinsame
+          Startoberfläche öffnen.
+        </p>
+      </section>
+
+      <section
+        class="privacy-section"
+        id="datenschutz"
+        aria-labelledby="privacy-title"
+      >
+        <div class="privacy-intro">
+          <p class="eyebrow">Datenschutz von Anfang an</p>
+          <h2 id="privacy-title">Ihre Daten bleiben dort, wo sie hingehören.</h2>
+          <p>
+            DataTool verarbeitet Fragebögen und Ergebnisse direkt auf Ihrem
+            lokalen Rechner. Es werden keine Dokumente, Antworten oder
+            Auswertungsdaten an uns, externe Cloud-Dienste oder KI-Anbieter
+            übertragen.
+          </p>
+        </div>
+
+        <div class="privacy-grid">
+          <article class="privacy-card">
+            <span class="privacy-icon" aria-hidden="true">01</span>
+            <h3>Vollständig lokal</h3>
+            <p>
+              Erkennung, Kontrolle und Export erfolgen auf Ihrem Gerät und
+              innerhalb Ihrer eigenen Arbeitsumgebung.
+            </p>
+          </article>
+          <article class="privacy-card">
+            <span class="privacy-icon" aria-hidden="true">02</span>
+            <h3>Keine Übertragung nach außen</h3>
+            <p>
+              Ihre Fragebögen und Ergebnisse werden weder automatisch
+              hochgeladen noch für fremde Dienste oder Modelle verwendet.
+            </p>
+          </article>
+          <article class="privacy-card">
+            <span class="privacy-icon" aria-hidden="true">03</span>
+            <h3>DSGVO-konform einsetzbar</h3>
+            <p>
+              Die lokale Verarbeitung unterstützt einen datensparsamen,
+              nachvollziehbaren Arbeitsablauf unter Ihrer eigenen Kontrolle.
+            </p>
+          </article>
+        </div>
+
+        <p class="privacy-note">
+          Weitere Einzelheiten finden Sie in unserer
+          <a href="./datenschutz.html">Datenschutzinformation für die Anwendungen</a>.
+        </p>
+      </section>
+
+      <section
+        class="pricing-section"
+        id="preis"
+        aria-labelledby="pricing-title"
+      >
+        <div class="pricing-copy">
+          <p class="eyebrow">DataTool Komplettpaket</p>
+          <h2 id="pricing-title">Ein Preis für den vollständigen Ablauf.</h2>
+          <p>
+            Sie erhalten die Fragebogenauswertung und alle ergänzenden
+            Anwendungen als einsatzbereites Paket – ohne laufende Gebühren pro
+            Fragebogen oder verarbeiteter Seite.
+          </p>
+          <div class="support-highlight">
+            <span class="support-highlight-icon" aria-hidden="true">
+              <svg viewBox="0 0 16 16" role="presentation">
+                <path d="M3 8.2 6.4 11.5 13 4.8" />
+              </svg>
+            </span>
+            <p>
+              <strong>12 Monate Updates &amp; persönlicher Support inklusive</strong>
+            </p>
+          </div>
+        </div>
+
+        <article class="pricing-card">
+          <p class="pricing-label">Komplettpaket ab</p>
+          <p class="pricing-value">
+            <strong>3.600&nbsp;€</strong>
+            <span>netto</span>
+          </p>
+          <p class="pricing-subline">
+            Der konkrete Preis richtet sich nach Einsatzumfang und Anzahl der
+            Arbeitsplätze.
+          </p>
+
+          <h3>Im Paket enthalten</h3>
+          <ul class="included-list">
+            <li>DataTool zur automatischen Fragebogenauswertung</li>
+            <li>PDF Toolkit zum Aufteilen, Entfernen und Zusammenführen</li>
+            <li>Eckensetzer zur zuverlässigen Vorbereitung Ihrer Dokumente</li>
+            <li>Gemeinsame Startoberfläche für alle Anwendungen</li>
+            <li>Persönliche Einrichtung und Einführung</li>
+            <li>Unterstützung beim ersten Fragebogen</li>
+            <li>Lokale Verarbeitung ohne Seiten- oder Übertragungsgebühren</li>
+          </ul>
+
+          <p class="pricing-tax">Zuzüglich gesetzlicher Umsatzsteuer.</p>
+        </article>
+      </section>
+
+      <section class="outro">
+        <p class="eyebrow">Eine Lösung für den gesamten Ablauf.</p>
+        <h2>DataTool passend zu Ihrem Einsatz kennenlernen.</h2>
+        <p>
+          Auf unserer Lösungsseite finden Sie weitere Informationen zu
+          DataTool, den enthaltenen Anwendungen und den verfügbaren
+          Kaufmöglichkeiten. Dort können Sie außerdem weitere
+          Softwarelösungen für die Automatisierung Ihrer Arbeitsabläufe
+          kennenlernen.
+        </p>
+        <!-- Später im href die gewünschte externe Zielseite eintragen. -->
+        <a class="cta-button solutions-link" id="solutionsButton" href="#solutions">
+          DataTool und weitere Lösungen ansehen
+        </a>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 mit-ki.at GesbR · The Repetitive Company</span>
+      <nav aria-label="Rechtliche Informationen">
+        <a href="./impressum.html">Impressum</a>
+        <a href="./datenschutz.html">Datenschutz</a>
+        <a href="./agb.html">AGB</a>
+      </nav>
+    </footer>
+
+    <script src="./animation.js"></script>
+  </body>
+</html>

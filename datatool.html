@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="DataTool erkennt Antworten und Kommentare in Fragebögen, führt gezielt durch die Kontrolle und exportiert geprüfte Ergebnisse." />
+    <title>DataTool – Antworten erkennen und exportieren</title>
+    <link rel="stylesheet" href="./product-pages.css" />
+  </head>
+  <body>
+    <header class="product-header">
+      <a class="product-brand" href="./index.html" aria-label="Zur DataTool-Startseite"><img src="./company-logo.png" alt="The Repetitive Company" width="1075" height="334" /></a>
+      <nav class="product-nav" aria-label="Seitennavigation">
+        <a href="./index.html#solutions">Alle Anwendungen</a>
+        <a href="./eckensetzer.html">Eckensetzer</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="product-hero product-hero--blue datatool-hero" data-datatool-hero>
+        <div class="product-copy">
+          <p class="product-kicker">Kernanwendung des Komplettpakets</p>
+          <h1>Antworten sicher übernehmen.</h1>
+          <p>
+            DataTool erkennt markierte Antworten, Mehrfachauswahlen und
+            Kommentare. Klare Ergebnisse werden direkt übernommen, auffällige
+            Angaben gezielt zur Kontrolle vorgelegt.
+          </p>
+          <div class="product-actions">
+            <a class="secondary-action" href="./index.html#preis">Zum Komplettpaket</a>
+            <button class="primary-action demo-jump-action" type="button" data-demo-focus-open aria-expanded="false">
+              Jetzt ausprobieren <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="product-visual">
+          <div class="questionnaire-demo" id="datatool-demo" data-questionnaire-demo>
+            <div class="questionnaire-demo-heading">
+              <div>
+                <span>Direkt ausprobieren</span>
+                <strong>Klicken Sie auf ein rotes Antwortfeld.</strong>
+              </div>
+              <div class="questionnaire-demo-controls">
+                <button type="button" data-tutorial-open>Anleitung</button>
+                <button type="button" data-questionnaire-reset>Zurücksetzen</button>
+                <button class="demo-focus-return" type="button" data-demo-focus-close>← Zur Übersicht</button>
+              </div>
+            </div>
+
+            <div class="demo-tutorial" data-demo-tutorial aria-hidden="true">
+              <section class="demo-tutorial-card" role="dialog" aria-modal="true" aria-labelledby="demo-tutorial-title">
+                <button class="demo-tutorial-close" type="button" data-tutorial-close aria-label="Anleitung schließen">×</button>
+                <p>Kurzanleitung</p>
+                <h2 id="demo-tutorial-title">So kontrollieren Sie erkannte Antworten.</h2>
+                <div class="demo-tutorial-steps">
+                  <article>
+                    <span>1×</span>
+                    <div>
+                      <strong>Einfachklick</strong>
+                      <p>
+                        Ein Feld manuell bestätigen oder ändern. Die Auswahl
+                        wird
+                        <button type="button" class="color-info color-info--green" data-color-info aria-expanded="false">
+                          grün
+                          <span class="color-tooltip" role="tooltip">
+                            <strong>Manuell bestätigte Antwort</strong>
+                            Welcher Wert übernommen wird, bestimmen Sie im Template über die Antwortoptionen – passend zu Ihrem Auswertungsschema.
+                          </span>
+                        </button>
+                        dargestellt.
+                      </p>
+                    </div>
+                  </article>
+                  <article>
+                    <span>3×</span>
+                    <div>
+                      <strong>Dreifachklick</strong>
+                      <p>
+                        Eine ganze Antwortzeile als Konflikt markieren – etwa
+                        wenn keine eindeutige Antwort angekreuzt wurde. Die
+                        Zeile wird
+                        <button type="button" class="color-info color-info--violet" data-color-info aria-expanded="false">
+                          violett
+                          <span class="color-tooltip" role="tooltip">
+                            <strong>Mehrfachauswahl oder Konflikt</strong>
+                            Für jede Position kann ein eigener Konfliktwert festgelegt werden. Dieser erscheint im Ergebnis und im Export, bis die Auswahl geändert wird.
+                          </span>
+                        </button>
+                        dargestellt.
+                      </p>
+                    </div>
+                  </article>
+                  <article>
+                    <span>3×</span>
+                    <div>
+                      <strong>Dreifachklick bei einer Mehrfachauswahl</strong>
+                      <p>
+                        Eine bereits violett markierte Mehrfachauswahl grau
+                        abwählen.
+                      </p>
+                    </div>
+                  </article>
+                </div>
+                <p class="demo-tutorial-tip">
+                  Tipp: Fahren Sie über <b>grün</b> oder <b>violett</b>, um mehr über die konfigurierbaren Ausgabewerte zu erfahren.
+                </p>
+                <button class="demo-tutorial-confirm" type="button" data-tutorial-close>Verstanden, ausprobieren</button>
+              </section>
+            </div>
+
+            <div class="questionnaire-stage">
+              <div class="questionnaire-sheet">
+                <img src="./bild-02-fragebogen-ausgefuellt-clean-alpha.png" alt="Ausgefüllter Fragebogen mit anklickbaren Erkennungsfeldern" />
+
+                <div class="answer-row answer-row--work-1" data-answer-row>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: trifft zu"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: eher ja"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: teils, teils"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: eher nein"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: trifft nicht zu"></button>
+                </div>
+                <div class="answer-row answer-row--work-2" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: trifft zu"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: eher ja"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: teils, teils"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: eher nein"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: trifft nicht zu"></button>
+                </div>
+                <div class="answer-row answer-row--work-3" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: trifft zu"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: eher ja"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: teils, teils"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: eher nein"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: trifft nicht zu"></button>
+                </div>
+                <div class="answer-row answer-row--work-4" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: trifft zu"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: eher ja"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: teils, teils"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: eher nein"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: trifft nicht zu"></button>
+                </div>
+                <div class="answer-row answer-row--rating" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 1"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 2"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 3"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 4"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 5"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 6"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Bewertung 7"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 8"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Bewertung 9"></button>
+                </div>
+                <div class="answer-row answer-row--frequency-1" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: nie"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: selten"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: gelegentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: monatlich"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: wöchentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: mehrmals"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: täglich"></button>
+                </div>
+                <div class="answer-row answer-row--frequency-2" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: nie"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: selten"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: gelegentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: monatlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: wöchentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: mehrmals"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: täglich"></button>
+                </div>
+                <div class="answer-row answer-row--frequency-3" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: nie"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: selten"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: gelegentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: monatlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: wöchentlich"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: mehrmals"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: täglich"></button>
+                </div>
+                <div class="answer-row answer-row--frequency-4" data-answer-row>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: nie"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: selten"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: gelegentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: monatlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: wöchentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Antwortfeld: mehrmals"></button>
+                  <button type="button" class="answer-overlay detected" data-answer-overlay aria-label="Antwortfeld: täglich"></button>
+                </div>
+                <div class="answer-row answer-row--multiple all-marked" data-answer-row data-initial-multiple>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Mehrfachauswahl: nie"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Mehrfachauswahl: selten"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Mehrfachauswahl: gelegentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Mehrfachauswahl: monatlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Mehrfachauswahl: wöchentlich"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Mehrfachauswahl: mehrmals"></button>
+                  <button type="button" class="answer-overlay" data-answer-overlay aria-label="Mehrfachauswahl: täglich"></button>
+                </div>
+
+                <div class="support-overlays" aria-label="Mehrfachauswahl bei den unterstützenden Arbeitsbedingungen">
+                  <button type="button" class="support-overlay support-overlay--1 detected" data-support-overlay aria-label="Klare Ziele"></button>
+                  <button type="button" class="support-overlay support-overlay--2" data-support-overlay aria-label="Ruhige Arbeitsphasen"></button>
+                  <button type="button" class="support-overlay support-overlay--3 detected" data-support-overlay aria-label="Flexible Zeiteinteilung"></button>
+                  <button type="button" class="support-overlay support-overlay--4" data-support-overlay aria-label="Gute Abstimmung im Team"></button>
+                  <button type="button" class="support-overlay support-overlay--5 detected" data-support-overlay aria-label="Passende Arbeitsmittel"></button>
+                  <button type="button" class="support-overlay support-overlay--6" data-support-overlay aria-label="Regelmäßiges Feedback"></button>
+                </div>
+              </div>
+            </div>
+            <div class="questionnaire-demo-footer">
+              <button type="button" data-tutorial-open>Anleitung</button>
+            </div>
+          </div>
+        </div>
+
+        <nav class="product-carousel" aria-label="Zwischen den Anwendungen wechseln">
+          <a class="product-carousel-arrow product-carousel-arrow--prev" href="./eckensetzer.html" aria-label="Zur vorherigen Anwendung: Eckensetzer"><span aria-hidden="true">&lt;</span></a>
+          <a class="product-carousel-arrow product-carousel-arrow--next" href="./pdf-toolkit.html" aria-label="Zur nächsten Anwendung: PDF Toolkit"><span aria-hidden="true">&gt;</span></a>
+        </nav>
+      </section>
+
+      <section class="product-benefits product-hero--blue">
+        <div class="benefits-heading"><p class="section-kicker">Vom Original zum Datensatz</p><h2>Kontrolle bleibt nachvollziehbar.</h2></div>
+        <div class="benefit-prose">
+          <p>
+            Ausgefüllte Fragebögen werden anhand des zuvor eingerichteten
+            Templates ausgerichtet und ausgewertet. Eindeutige Markierungen
+            können direkt übernommen werden. Mehrfachauswahlen, widersprüchliche
+            Angaben oder andere auffällige Ergebnisse werden farblich am
+            Original hervorgehoben und gezielt zur Prüfung angeboten.
+            Kommentare und Freitextbereiche bleiben ebenfalls mit dem jeweiligen
+            Dokument verbunden, sodass der inhaltliche Zusammenhang erhalten
+            bleibt.
+          </p>
+          <p>
+            Korrekturen erfolgen unmittelbar in der Dokumentansicht. Dadurch
+            behalten Sie die volle Kontrolle über jede Antwort, ohne zwischen
+            Papier, separaten Listen und Tabellen wechseln zu müssen. Welche
+            Antwortwerte und Konfliktkennzeichnungen ausgegeben werden, lässt
+            sich passend zum verwendeten Fragebogen festlegen. Nach der Prüfung
+            stehen die strukturierten Ergebnisse für Tabellen,
+            Statistikprogramme, Dokumentationen und weitere lokale
+            Arbeitsschritte bereit.
+          </p>
+        </div>
+      </section>
+
+      <section class="template-lab-section product-hero--blue" id="template-erstellen">
+        <div class="template-lab-intro">
+          <p class="section-kicker">Template selbst ausprobieren</p>
+          <h2>Einmal einrichten. Wiederholt auswerten.</h2>
+          <p>
+            Legen Sie direkt am leeren Fragebogen fest, welche Antwortbereiche
+            DataTool später auslesen soll. Die geführte Übung bildet die
+            wichtigsten Schritte des echten Template-Modus nach.
+          </p>
+        </div>
+
+        <div class="template-lab" data-template-lab>
+          <header class="template-lab-header">
+            <div>
+              <span>DataTool</span>
+              <strong>Template-Modus</strong>
+            </div>
+            <button type="button" data-template-reset>Neu beginnen</button>
+          </header>
+
+          <ol class="template-lab-progress" aria-label="Fortschritt der Template-Erstellung">
+            <li class="active" data-template-step="1"><span>1</span>Bereich ziehen</li>
+            <li data-template-step="2"><span>2</span>Raster festlegen</li>
+            <li data-template-step="3"><span>3</span>Werte prüfen</li>
+            <li data-template-step="4"><span>4</span>Speichern</li>
+          </ol>
+
+          <div class="template-lab-workspace">
+            <div class="template-canvas-shell">
+              <div class="template-canvas-toolbar">
+                <strong data-template-instruction>
+                  Ziehen Sie einen Rahmen über die erste Antworttabelle.
+                </strong>
+                <span data-template-counter>0 Felder</span>
+              </div>
+
+              <div class="template-canvas" data-template-canvas>
+                <img
+                  src="./bild-01-fragebogen-leer-v2-alpha.png"
+                  alt="Leerer Fragebogen zur interaktiven Template-Erstellung"
+                  draggable="false"
+                />
+                <div class="template-target" aria-hidden="true"></div>
+                <div class="template-draw-selection" data-template-selection></div>
+                <div class="template-generated-grid" data-template-grid></div>
+                <div
+                  class="template-draw-surface"
+                  data-template-draw-surface
+                  role="application"
+                  aria-label="Zeichenfläche für den Erkennungsbereich"
+                ></div>
+              </div>
+            </div>
+
+            <aside class="template-tools" aria-label="Werkzeuge des Template-Modus">
+              <p>Werkzeuge</p>
+              <button type="button" class="template-tool" data-template-tool="large">
+                <span></span>Große Felder
+              </button>
+              <button type="button" class="template-tool active" data-template-tool="grid">
+                <span></span>Eigenes Raster
+              </button>
+              <button type="button" class="template-tool" data-template-tool="select">
+                <span></span>Auswahlmodus
+              </button>
+
+              <div class="template-value-editor" data-template-value-editor hidden>
+                <p>Ausgewähltes Feld</p>
+                <strong data-template-selected-label>Feld 1</strong>
+                <label>
+                  Ausgabewert
+                  <select data-template-value>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                  </select>
+                </label>
+                <label>
+                  Konfliktwert
+                  <input type="number" value="9" data-template-conflict-value />
+                </label>
+                <button type="button" class="template-apply-value" data-template-apply-value>
+                  Wert übernehmen
+                </button>
+              </div>
+
+              <div class="template-tools-footer">
+                <p data-template-status>Eigenes Raster ist ausgewählt.</p>
+                <button type="button" class="template-save" data-template-save disabled>
+                  Template speichern
+                </button>
+              </div>
+            </aside>
+          </div>
+
+          <div class="template-config" data-template-config aria-hidden="true">
+            <section role="dialog" aria-modal="true" aria-labelledby="template-config-title">
+              <p>Eigenes Raster</p>
+              <h3 id="template-config-title">Antwortfelder automatisch aufteilen.</h3>
+              <div class="template-config-fields">
+                <label>
+                  Spalten
+                  <input type="number" min="1" max="9" value="5" data-template-cols />
+                </label>
+                <label>
+                  Zeilen
+                  <input type="number" min="1" max="9" value="4" data-template-rows />
+                </label>
+                <label>
+                  Erster Wert
+                  <input type="number" min="0" max="99" value="1" data-template-start-value />
+                </label>
+              </div>
+              <p class="template-config-preview" data-template-preview>
+                Vorschau: 5 × 4 Raster mit 20 Feldern
+              </p>
+              <button type="button" data-template-create>Raster erstellen</button>
+            </section>
+          </div>
+
+          <div class="template-success" data-template-success aria-hidden="true">
+            <div>
+              <span aria-hidden="true">✓</span>
+              <p>Template bereit</p>
+              <strong>Dieser Fragebogentyp kann jetzt wiederholt ausgewertet werden.</strong>
+              <button type="button" data-template-reset>Noch einmal ausprobieren</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="package-strip">
+        <div><p>Im Komplettpaket enthalten</p><h2>DataTool und alle ergänzenden Anwendungen.</h2></div>
+        <a href="./index.html#preis">Preis und Umfang ansehen →</a>
+      </section>
+    </main>
+
+    <footer class="product-footer">
+      <span>© 2026 mit-ki.at GesbR · The Repetitive Company</span>
+      <nav><a href="./impressum.html">Impressum</a><a href="./datenschutz.html">Datenschutz</a><a href="./agb.html">AGB</a></nav>
+    </footer>
+    <script src="./product-interactions.js"></script>
+  </body>
+</html>
