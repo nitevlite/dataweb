@@ -112,7 +112,7 @@
       <p class="eyebrow">Ein klarer Ablauf</p>
       <h2 class="scroll-reveal" data-scroll-reveal>Vom ausgefüllten Fragebogen zum geprüften Datensatz.</h2>
       <p class="workflow-explainer">
-        DataTool übernimmt eindeutig erkannte Antworten automatisch. Sie prüfen gezielt nur jene Ergebnisse, bei denen eine Entscheidung notwendig ist, korrigieren Unklarheiten direkt im Kontext und erhalten anschließend einen verlässlichen Datensatz – statt jede Antwort erneut manuell zu übertragen.
+        DataTool übernimmt erkannte Antworten in eine übersichtliche Arbeitsansicht. Sie können jederzeit alle Ergebnisse kontrollieren, anpassen oder bestätigen und entscheiden selbst, wo eine genauere Prüfung nötig ist. Jede Antwort bleibt im Kontext des Fragebogens nachvollziehbar – ohne sie erneut manuell übertragen zu müssen.
       </p>
     `;
     intro.after(workflowIntro);
@@ -229,17 +229,20 @@
 
     const reveal = document.querySelector("[data-scroll-reveal]");
     const revealText = reveal.textContent.trim();
-    const characters = Array.from(revealText);
     reveal.setAttribute("aria-label", revealText);
-    reveal.innerHTML = characters
-      .map((character) => `<span aria-hidden="true">${character === " " ? "&nbsp;" : character}</span>`)
-      .join("");
+    reveal.innerHTML = revealText
+      .split(/\s+/)
+      .map((word) => `<span class="reveal-word" aria-hidden="true">${Array.from(word)
+        .map((character) => `<span class="reveal-character">${character}</span>`)
+        .join("")}</span>`)
+      .join(" ");
+    const characters = [...reveal.querySelectorAll(".reveal-character")];
 
     const updateReveal = () => {
       const rect = reveal.getBoundingClientRect();
       const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.82 - rect.top) / (window.innerHeight * 0.34)));
       const activeCount = Math.round(progress * characters.length);
-      reveal.querySelectorAll("span").forEach((character, index) => character.classList.toggle("active", index < activeCount));
+      characters.forEach((character, index) => character.classList.toggle("active", index < activeCount));
     };
     window.addEventListener("scroll", updateReveal, { passive: true });
     window.addEventListener("resize", updateReveal);
