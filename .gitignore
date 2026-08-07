@@ -1,0 +1,8 @@
+# Private local previews
+/testauswertung-preview.html
+/visual-demo-preview.html
+
+# Workflow draft kept outside the published repository until it is ready
+/workflow.html
+/workflow.css
+/workflow.js

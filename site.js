@@ -3,8 +3,9 @@
     `${base}${base.includes("?") ? "&" : "?"}${parameter}=${encodeURIComponent(prompt)}`;
 
   const buildAiSection = () => {
+    const publicProductUrl = new URL("./", window.location.href).href;
     const prompt = [
-      "Fasse DataTool anhand der öffentlichen Produktseite https://nitevlite.github.io/dataweb/ zusammen.",
+      `Fasse DataTool von The Repetitive Company anhand der öffentlichen Produktseite ${publicProductUrl} zusammen.`,
       "Erkläre den lokalen Ablauf von der Vorbereitung der Fragebögen über Erkennung und gezielte Kontrolle bis zum Export.",
       "Ordne außerdem PDF Toolkit und Eckensetzer als vorbereitende Anwendungen ein.",
       "Bewerte die Vorteile lokaler Verarbeitung und weise darauf hin, dass keine Fragebögen oder Auswertungsdaten an externe KI-Dienste übertragen werden.",
@@ -60,6 +61,7 @@
         <a href="#solutions">Anwendungen</a>
         <a href="#datenschutz">Datenschutz</a>
         <a href="#preis">Preis</a>
+        <a href="#faq">FAQ</a>
         <a class="solutions-link" href="demo/?step=1">Demo ausprobieren</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="headerNav">
@@ -197,7 +199,7 @@
     `;
 
     footer.innerHTML = `
-      <span>© 2026 The Repetitive Company GesbR</span>
+      <span>© 2026 The Repetitive Company</span>
       <nav aria-label="Rechtliche Informationen">
         <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a>
       </nav>

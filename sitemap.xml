@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Replace the hostname when the custom domain goes live; see DOMAINWECHSEL-GEO.md. -->
+  <url>
+    <loc>https://nitevlite.github.io/dataweb/</loc>
+    <lastmod>2026-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://nitevlite.github.io/dataweb/pdf-toolkit.html</loc>
+    <lastmod>2026-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://nitevlite.github.io/dataweb/eckensetzer.html</loc>
+    <lastmod>2026-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://nitevlite.github.io/dataweb/demo/</loc>
+    <lastmod>2026-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://nitevlite.github.io/dataweb/impressum.html</loc>
+    <lastmod>2026-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://nitevlite.github.io/dataweb/datenschutz.html</loc>
+    <lastmod>2026-08-07</lastmod>
+  </url>
+  <url>
+    <loc>https://nitevlite.github.io/dataweb/agb.html</loc>
+    <lastmod>2026-08-07</lastmod>
+  </url>
+</urlset>

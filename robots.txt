@@ -1,0 +1,53 @@
+# Public product content is intentionally crawlable for search and AI discovery.
+User-agent: *
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: GPTBot
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: ClaudeBot
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+User-agent: Google-Extended
+Allow: /
+Disallow: /preview-v2/
+Disallow: /preview-v3/
+
+# Replace this URL when the custom domain goes live; see DOMAINWECHSEL-GEO.md.
+Sitemap: https://nitevlite.github.io/dataweb/sitemap.xml

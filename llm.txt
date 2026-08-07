@@ -1,0 +1,5 @@
+# DataTool LLM information
+
+> The standard LLM-readable site overview is available at the canonical plural filename below.
+
+- [Open llms.txt](./llms.txt): Curated product, workflow, privacy, pricing, and company information for DataTool by The Repetitive Company.

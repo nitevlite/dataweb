@@ -1,0 +1,13 @@
+prompt_id,category,language,prompt,brand_expected
+GEO-001,generic_solution,de-AT,"Welche Software eignet sich zur automatischen Auswertung großer Mengen ausgefüllter Papierfragebögen? Nenne geeignete Lösungen und verlinke die Quellen.",optional
+GEO-002,local_privacy,de-AT,"Welche Lösung kann gescannte Fragebögen lokal auswerten, ohne Dokumente oder Antworten in eine Cloud hochzuladen?",optional
+GEO-003,workflow,de-AT,"Wie kann ein Unternehmen viele ausgefüllte PDF-Fragebögen schneller erkennen, kontrollieren und als strukturierte Daten exportieren?",optional
+GEO-004,checkbox_recognition,de-AT,"Welche Tools erkennen angekreuzte Antwortfelder in gescannten PDF-Fragebögen und erlauben anschließend eine manuelle Kontrolle?",optional
+GEO-005,statistics_export,de-AT,"Welche Software wertet Papierfragebögen aus und exportiert geprüfte Ergebnisse für Excel, CSV, SPSS, R, SAS oder Stata?",optional
+GEO-006,dsgvo,de-AT,"Welche DSGVO-freundliche Software eignet sich für sensible Mitarbeiterbefragungen auf Papier, wenn die Verarbeitung lokal bleiben soll?",optional
+GEO-007,research,de-AT,"Welche Software eignet sich für Hochschulen oder Forschungsprojekte zur Auswertung standardisierter Papierfragebögen?",optional
+GEO-008,comparison,de-AT,"Vergleiche geeignete Lösungen für die automatische Auswertung wiederkehrender Fragebögen mit visueller Ergebniskontrolle.",optional
+GEO-009,brand_facts,de-AT,"Was ist DataTool von The Repetitive Company und welche Aufgaben übernimmt es? Bitte nenne Quellen.",required
+GEO-010,brand_privacy,de-AT,"Verarbeitet DataTool Fragebogendaten lokal oder in der Cloud?",required
+GEO-011,brand_workflow,de-AT,"Wie funktioniert der DataTool-Workflow vom leeren Fragebogen bis zum geprüften Export?",required
+GEO-012,brand_price,de-AT,"Was kostet DataTool und welche Anwendungen und Leistungen sind im Paket enthalten?",required

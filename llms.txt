@@ -1,0 +1,40 @@
+# DataTool by The Repetitive Company
+
+> DataTool is a German-language Windows software package by The Repetitive Company for preparing, recognizing, reviewing, and exporting paper questionnaire data. Processing runs locally on the customer's computer; questionnaire documents and results are not sent to the provider, cloud services, or AI providers.
+
+DataTool refers both to the complete package and to its central questionnaire-recognition application. The package also includes PDF Toolkit and Eckensetzer. The website and product information are in German. The provider and brand is The Repetitive Company, based in Graz, Austria.
+
+## Product overview
+
+- [DataTool home](./): Overview of automatic questionnaire evaluation, local data processing, included applications, export formats, support, and pricing.
+- [Interactive DataTool demo](./demo/?step=1): Browser-based guided demonstration of the questionnaire workflow.
+
+## Included applications
+
+- [PDF Toolkit](./pdf-toolkit.html): Splits PDFs into fixed blocks or at selected pages, removes individual or recurring pages, and merges PDFs in a chosen order.
+- [Eckensetzer](./eckensetzer.html): Adds reusable corner markers to blank questionnaire originals before printing so scanned pages can later be aligned and recognized reliably.
+- [DataTool demo](./demo/?step=1): Recognizes answers and comments, guides users through checking uncertain results, and exports verified data.
+
+## Key facts
+
+- The complete package starts at EUR 3,600 net; the final price depends on scope and number of workstations.
+- The package includes 12 months of updates and personal support, setup and introduction, and assistance with the first questionnaire.
+- There are no ongoing charges per questionnaire or processed page.
+- In a recent operational test, the DataTool workflow was approximately ten times faster than the previous manual process. This is a scenario-specific practical result, not a universal performance guarantee.
+- The same operational use produced fewer manual transfer errors. An exact cross-project error rate has not yet been quantified.
+- Every automatically recognized answer can be compared with the original questionnaire and corrected by a user. This enables complete human review but does not claim 100 percent automatic recognition accuracy.
+- DataTool can be configured for almost any standardized questionnaire or recurring PDF form with a consistent layout and defined answer areas, including checkboxes, single- and multiple-choice fields, rating scales, matrices, evaluations, feedback forms and checklists. Free-text notes can be captured manually; automatic readability depends on the handwriting and scan quality.
+- Supported export categories shown on the website include tables (Excel, CSV, TSV), statistics tools (SPSS, R, SAS, Stata), data exchange (JSON, XML, TXT), and documentation formats.
+- Questionnaire recognition, review, and export take place locally in the customer's own environment.
+- Documents, answers, and evaluation data are not automatically uploaded or transferred to external cloud or AI services.
+
+## The Repetitive Company and contact
+
+- [Imprint](./impressum.html): Legal provider details, owners, postal address, email address, and telephone number.
+- [Privacy information](./datenschutz.html): Information about data processing for the website and applications.
+- [Terms and conditions](./agb.html): Contractual terms for the DataTool package.
+- Provider and brand: The Repetitive Company.
+- Owners: Felix Auf and Maxim Weikhard.
+- Address: Sonnenstraße 12, 8010 Graz, Austria.
+- Email: info.mit.ki@gmail.com.
+- Telephone: +43 699 12520010.
