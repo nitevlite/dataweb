@@ -217,7 +217,16 @@ section[id] { scroll-margin-top: 5.75rem; }
 .support-highlight small { display: block; margin-bottom: 0.1rem; color: var(--v3-blue-dark); font-size: 0.66rem; font-weight: 850; letter-spacing: 0.1em; text-transform: uppercase; }
 .support-highlight strong { color: #17385e; }
 
-.outro h2 { max-width: 17ch; }
+.outro {
+  min-height: auto;
+  padding-block: clamp(5rem, 10vw, 9rem);
+}
+.outro h2 {
+  max-width: 17ch;
+  font-size: clamp(2.3rem, 4.4vw, 4.3rem);
+  line-height: 0.98;
+}
+.outro > p { max-width: 48rem; font-size: 1.1rem; line-height: 1.7; }
 .outro-actions { margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 1.3rem; }
 .outro-actions .cta-button { margin-top: 0; color: #fff; background: var(--v3-blue); border-radius: 0.8rem; }
 .outro-actions .cta-button:hover { background: var(--v3-blue-dark); }

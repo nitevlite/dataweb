@@ -312,6 +312,8 @@
     const hero = demo.closest("[data-datatool-hero]");
     const focusOpen = hero?.querySelector("[data-demo-focus-open]");
     const focusClose = demo.querySelector("[data-demo-focus-close]");
+    const nextDemoLink = document.querySelector("[data-next-demo-link]");
+    const templateDemo = document.querySelector("#template-erstellen");
     const tutorial = demo.querySelector("[data-demo-tutorial]");
     const tutorialCard = tutorial?.querySelector(".demo-tutorial-card");
     const tutorialOpenButtons = [...demo.querySelectorAll("[data-tutorial-open]")];
@@ -357,6 +359,15 @@
       setFocusMode(true, { showTutorial: true }),
     );
     focusClose?.addEventListener("click", () => setFocusMode(false));
+    nextDemoLink?.addEventListener("click", (event) => {
+      event.preventDefault();
+      setFocusMode(false);
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() =>
+          templateDemo?.scrollIntoView({ behavior: "smooth", block: "start" }),
+        ),
+      );
+    });
     tutorialOpenButtons.forEach((button) =>
       button.addEventListener("click", () => openTutorial(button)),
     );
