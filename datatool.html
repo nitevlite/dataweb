@@ -9,11 +9,15 @@
   </head>
   <body>
     <header class="product-header">
-      <a class="product-brand" href="./index.html" aria-label="Zur DataTool-Startseite"><img src="./company-logo.png" alt="The Repetitive Company" width="1075" height="334" /></a>
-      <nav class="product-nav" aria-label="Seitennavigation">
-        <a href="./index.html#solutions">Alle Anwendungen</a>
-        <a href="./eckensetzer.html">Eckensetzer</a>
+      <a class="product-brand" href="./index.html" data-main-home aria-label="Zur DataTool-Startseite"><img src="./company-logo.png" alt="The Repetitive Company" width="1075" height="334" /></a>
+      <nav class="product-nav" id="productNav" aria-label="Seitennavigation">
+        <a href="./index.html#scrollStory" data-main-target="ablauf">DataTool</a>
+        <a href="./index.html#solutions" data-main-target="solutions">Anwendungen</a>
+        <a href="./index.html#datenschutz" data-main-target="datenschutz">Datenschutz</a>
+        <a href="./index.html#preis" data-main-target="preis">Preis</a>
+        <a class="tour-link" href="./datatool.html?demo=1" data-demo-link>Demo ausprobieren</a>
       </nav>
+      <button class="product-menu-toggle" type="button" aria-expanded="false" aria-controls="productNav"><span aria-hidden="true">☰</span><span>Menü</span></button>
     </header>
 
     <main>

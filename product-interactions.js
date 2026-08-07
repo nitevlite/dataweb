@@ -2,6 +2,39 @@
   const hero = document.querySelector(".product-hero");
   const carouselLinks = [...document.querySelectorAll(".product-carousel-arrow")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const productHeader = document.querySelector(".product-header");
+  const productNav = document.querySelector(".product-nav");
+  const productMenuToggle = document.querySelector(".product-menu-toggle");
+  const pageParams = new URLSearchParams(window.location.search);
+  const fromV3 = pageParams.get("from") === "v3";
+
+  if (fromV3) {
+    const home = document.querySelector("[data-main-home]");
+    if (home) home.href = "./preview-v3/";
+    document.querySelectorAll("[data-main-target]").forEach((link) => {
+      link.href = `./preview-v3/#${link.dataset.mainTarget}`;
+    });
+    const demoLink = document.querySelector("[data-demo-link]");
+    if (demoLink) demoLink.href = "./datatool.html?demo=1&from=v3";
+    carouselLinks.forEach((link) => {
+      const url = new URL(link.href);
+      url.searchParams.set("from", "v3");
+      link.href = url.href;
+    });
+  }
+
+  const closeProductMenu = () => {
+    productHeader?.classList.remove("menu-open");
+    productMenuToggle?.setAttribute("aria-expanded", "false");
+  };
+  productMenuToggle?.addEventListener("click", () => {
+    const open = productHeader.classList.toggle("menu-open");
+    productMenuToggle.setAttribute("aria-expanded", String(open));
+  });
+  productNav?.querySelectorAll("a").forEach((link) => link.addEventListener("click", closeProductMenu));
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeProductMenu();
+  });
 
   try {
     const incomingDirection = sessionStorage.getItem("productCarouselDirection");
@@ -16,37 +49,94 @@
     // The carousel still works as a normal link when storage is unavailable.
   }
 
-  carouselLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      if (
-        event.defaultPrevented ||
-        event.button !== 0 ||
-        event.metaKey ||
-        event.ctrlKey ||
-        event.shiftKey ||
-        event.altKey ||
-        reduceMotion.matches
-      ) {
-        return;
-      }
-
-      event.preventDefault();
-      const direction = link.classList.contains("product-carousel-arrow--next")
-        ? "next"
-        : "prev";
-
+  const navigateProduct = (link, direction) => {
+    if (!link) return;
+    if (!reduceMotion.matches) {
       try {
         sessionStorage.setItem("productCarouselDirection", direction);
       } catch {
         // Navigation and the outgoing animation remain available.
       }
-
       hero?.classList.add(`carousel-leave-${direction}`);
-      window.setTimeout(() => {
-        window.location.href = link.href;
-      }, hero ? 340 : 0);
+    }
+    window.setTimeout(() => {
+      window.location.href = link.href;
+    }, hero && !reduceMotion.matches ? 340 : 0);
+  };
+
+  carouselLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      const direction = link.classList.contains("product-carousel-arrow--next") ? "next" : "prev";
+      navigateProduct(link, direction);
     });
   });
+
+  if (hero && carouselLinks.length === 2) {
+    const products = [
+      { path: "datatool.html", label: "DataTool" },
+      { path: "pdf-toolkit.html", label: "PDF Toolkit" },
+      { path: "eckensetzer.html", label: "Eckensetzer" },
+    ];
+    const currentPath = window.location.pathname.split("/").pop();
+    const currentIndex = Math.max(0, products.findIndex((product) => product.path === currentPath));
+    let hintSeen = false;
+    try {
+      hintSeen = localStorage.getItem("productSwipeHintSeen") === "1";
+    } catch {
+      // The hint may appear again if local storage is unavailable.
+    }
+
+    const swipeNavigation = document.createElement("div");
+    swipeNavigation.className = "product-swipe-navigation";
+    swipeNavigation.setAttribute("aria-label", "Position in den enthaltenen Anwendungen");
+    swipeNavigation.innerHTML = `
+      ${hintSeen ? "" : '<p class="product-swipe-hint"><i aria-hidden="true">← ↔ →</i><span>Nach links oder rechts wischen</span></p>'}
+      <div class="product-swipe-position" aria-live="polite">
+        ${products.map((product, index) => `<span class="${index === currentIndex ? "active" : ""}" aria-hidden="true"></span>`).join("")}
+        <strong>${products[currentIndex].label}</strong>
+      </div>
+    `;
+    const productCopy = hero.querySelector(".product-copy");
+    if (productCopy) {
+      productCopy.after(swipeNavigation);
+    } else {
+      hero.append(swipeNavigation);
+    }
+
+    let touchStart = null;
+    const blockedSwipeTarget = (target) => target instanceof Element && Boolean(
+      target.closest(".product-visual, a, button, input, select, textarea, [role='button']"),
+    );
+    hero.addEventListener("touchstart", (event) => {
+      if (event.touches.length !== 1 || blockedSwipeTarget(event.target)) {
+        touchStart = null;
+        return;
+      }
+      const touch = event.touches[0];
+      touchStart = { x: touch.clientX, y: touch.clientY };
+    }, { passive: true });
+    hero.addEventListener("touchend", (event) => {
+      if (!touchStart || event.changedTouches.length !== 1) return;
+      const touch = event.changedTouches[0];
+      const dx = touch.clientX - touchStart.x;
+      const dy = touch.clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) < 64 || Math.abs(dx) < Math.abs(dy) * 1.35) return;
+
+      try {
+        localStorage.setItem("productSwipeHintSeen", "1");
+      } catch {
+        // Swipe navigation works without persistent hint state.
+      }
+      const hint = swipeNavigation.querySelector(".product-swipe-hint");
+      hint?.classList.add("is-dismissed");
+      const direction = dx < 0 ? "next" : "prev";
+      const link = carouselLinks.find((item) => item.classList.contains(`product-carousel-arrow--${direction}`));
+      navigateProduct(link, direction);
+    }, { passive: true });
+  }
 
   document.querySelectorAll("[data-corner-game]").forEach((game) => {
     const tray = game.querySelector("[data-marker-tray]");
