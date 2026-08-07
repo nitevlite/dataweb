@@ -16,6 +16,15 @@
     });
     const demoLink = document.querySelector("[data-demo-link]");
     if (demoLink) demoLink.href = "./datatool.html?demo=1&from=v3";
+    document.querySelectorAll('a[href^="./index.html#"], a[href^="index.html#"]').forEach((link) => {
+      const target = new URL(link.href).hash.slice(1);
+      link.href = `./preview-v3/#${target === "scrollStory" ? "ablauf" : target}`;
+    });
+    document.querySelectorAll('a[href$="impressum.html"], a[href$="datenschutz.html"], a[href$="agb.html"]').forEach((link) => {
+      const url = new URL(link.href);
+      url.searchParams.set("from", "v3");
+      link.href = `${url.pathname}${url.search}${url.hash}`;
+    });
     carouselLinks.forEach((link) => {
       const url = new URL(link.href);
       url.searchParams.set("from", "v3");
