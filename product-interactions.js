@@ -45,6 +45,48 @@
     if (event.key === "Escape") closeProductMenu();
   });
 
+  const revealHeadings = [...document.querySelectorAll("[data-product-scroll-reveal]")];
+  revealHeadings.forEach((heading) => {
+    const revealText = heading.textContent.trim();
+    heading.setAttribute("aria-label", revealText);
+    heading.innerHTML = revealText
+      .split(/\s+/)
+      .map(
+        (word) =>
+          `<span class="reveal-word" aria-hidden="true">${Array.from(word)
+            .map((character) => `<span class="reveal-character">${character}</span>`)
+            .join("")}</span>`,
+      )
+      .join(" ");
+  });
+
+  const updateRevealHeadings = () => {
+    revealHeadings.forEach((heading) => {
+      const characters = [...heading.querySelectorAll(".reveal-character")];
+      const rect = heading.getBoundingClientRect();
+      const progress = reduceMotion.matches
+        ? 1
+        : Math.max(
+            0,
+            Math.min(
+              1,
+              (window.innerHeight * 0.82 - rect.top) /
+                (window.innerHeight * 0.34),
+            ),
+          );
+      const activeCount = Math.round(progress * characters.length);
+      characters.forEach((character, index) =>
+        character.classList.toggle("active", index < activeCount),
+      );
+    });
+  };
+  if (revealHeadings.length) {
+    window.addEventListener("scroll", updateRevealHeadings, { passive: true });
+    window.addEventListener("resize", updateRevealHeadings);
+    reduceMotion.addEventListener?.("change", updateRevealHeadings);
+    updateRevealHeadings();
+  }
+
   try {
     const incomingDirection = sessionStorage.getItem("productCarouselDirection");
     sessionStorage.removeItem("productCarouselDirection");
