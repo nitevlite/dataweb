@@ -12,39 +12,13 @@
     ? Math.min(steps.length, Math.max(1, requestedStep))
     : 1;
   const current = steps[step - 1];
-  const content = document.querySelector("#demo-content");
+  const page = document.querySelector("#demo-page");
 
   if (requestedStep !== step) {
     window.history.replaceState(null, "", `?step=${step}`);
   }
 
   document.title = `${current.name} ausprobieren – DataTool Demo`;
-  document.querySelector("[data-demo-step-label]").textContent =
-    `Schritt ${step} von ${steps.length}`;
-  document.querySelector("[data-demo-position]").textContent =
-    `${step} / ${steps.length}`;
-  document.querySelectorAll("[data-step-link]").forEach((link) => {
-    const active = Number(link.dataset.stepLink) === step;
-    link.classList.toggle("active", active);
-    if (active) link.setAttribute("aria-current", "step");
-  });
-
-  const back = document.querySelector("[data-demo-back]");
-  const next = document.querySelector("[data-demo-next]");
-  if (step === 1) {
-    back.classList.add("is-hidden");
-    back.setAttribute("aria-hidden", "true");
-  } else {
-    back.href = `./demo/?step=${step - 1}`;
-    back.textContent = `← ${steps[step - 2].name}`;
-  }
-  if (step === steps.length) {
-    next.href = "./#preis";
-    next.textContent = "Paket ansehen →";
-  } else {
-    next.href = `./demo/?step=${step + 1}`;
-    next.textContent = `${steps[step].name} →`;
-  }
 
   fetch(`./${current.source}`)
     .then((response) => {
@@ -53,20 +27,38 @@
     })
     .then((html) => {
       const source = new DOMParser().parseFromString(html, "text/html");
-      const hero = source.querySelector(".product-hero");
-      if (!hero) throw new Error("Demo-Inhalt fehlt");
-      hero.querySelector(".product-carousel")?.remove();
-      content.replaceChildren(hero);
+      const header = source.querySelector(".product-header");
+      const main = source.querySelector("main");
+      const footer = source.querySelector(".product-footer");
+      if (!header || !main || !footer) throw new Error("Demo-Inhalt fehlt");
+
+      const demoRoutes = new Map([
+        ["datatool.html", 1],
+        ["pdf-toolkit.html", 2],
+        ["eckensetzer.html", 3],
+      ]);
+      source.querySelectorAll("a[href]").forEach((link) => {
+        const href = link.getAttribute("href");
+        const file = href?.split(/[?#]/)[0].replace(/^\.\//, "");
+        const targetStep = demoRoutes.get(file);
+        if (targetStep) link.setAttribute("href", `./demo/?step=${targetStep}`);
+      });
+
+      page.replaceWith(
+        document.importNode(header, true),
+        document.importNode(main, true),
+        document.importNode(footer, true),
+      );
 
       const script = document.createElement("script");
-      script.src = "./product-interactions.js?v=20260807-6";
+      script.src = "./product-interactions.js?v=20260807-7";
       document.body.append(script);
     })
     .catch(() => {
-      content.innerHTML = `
+      page.innerHTML = `
         <section class="demo-error">
           <p>Die Demo konnte gerade nicht geladen werden.</p>
-          <a href="./${current.source}">${current.name} direkt öffnen →</a>
+          <a href="./">Zur Startseite →</a>
         </section>
       `;
     });

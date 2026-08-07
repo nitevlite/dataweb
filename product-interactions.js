@@ -394,14 +394,6 @@
       supportOverlays.forEach((overlay) => clickState.delete(overlay));
     });
 
-    const demoRequested =
-      document.body.classList.contains("standalone-demo") &&
-      pageParams.get("step") === "1";
-    if (demoRequested) {
-      requestAnimationFrame(() =>
-        setFocusMode(true, { showTutorial: true }),
-      );
-    }
   });
 
   document.querySelectorAll("[data-template-lab]").forEach((lab) => {
