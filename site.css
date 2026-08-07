@@ -200,7 +200,7 @@ section[id] { scroll-margin-top: 5.75rem; }
 .privacy-note { margin-top: 2.75rem; }
 .privacy-note a { color: var(--v3-blue-dark); }
 
-.pricing-section { grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1.08fr); gap: clamp(2.5rem, 6vw, 5rem); }
+.pricing-section { grid-template-columns: minmax(0, 0.92fr) minmax(22rem, 1.08fr); gap: clamp(2.5rem, 6vw, 5rem); background: #f4f7fb; }
 .pricing-copy h2 { font-size: clamp(2.35rem, 4.5vw, 4.35rem); }
 .pricing-copy .eyebrow, .pricing-label { color: var(--v3-blue-dark); }
 .pricing-card { width: min(100%, 37rem); padding: clamp(1.6rem, 3vw, 2.4rem); }
@@ -526,7 +526,7 @@ section[id] { scroll-margin-top: 5.75rem; }
 .questionnaire-note p { margin: 0.7rem 0 0; line-height: 1.7; }
 .questionnaire-note a { display: inline-block; margin-top: 1rem; color: var(--v3-blue-dark); font-weight: 780; }
 
-.faq-section { background: #f4f7fb; }
+.faq-section { background: #fff; }
 
 .faq-list {
   width: min(100%, 62rem);
