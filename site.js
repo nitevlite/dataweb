@@ -60,7 +60,7 @@
         <a href="#solutions">Anwendungen</a>
         <a href="#datenschutz">Datenschutz</a>
         <a href="#preis">Preis</a>
-        <a class="solutions-link" href="datatool.html?demo=1">Demo ausprobieren</a>
+        <a class="solutions-link" href="demo/?step=1">Demo ausprobieren</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="headerNav">
         <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -76,7 +76,7 @@
         mühsames Abtippen und mit voller Kontrolle über jedes Ergebnis.
       </p>
       <div class="hero-actions">
-        <a class="cta-button hero-demo" href="datatool.html?demo=1">Demo ausprobieren</a>
+        <a class="cta-button hero-demo" href="demo/?step=1">Demo ausprobieren</a>
         <a class="hero-secondary" href="#solutions">Paket ansehen <span aria-hidden="true">↓</span></a>
       </div>
     `;
@@ -103,7 +103,7 @@
     workflowIntro.after(trust);
 
     document.querySelectorAll(".story-try-link").forEach((link) => {
-      link.href = "datatool.html?demo=1";
+      link.href = "demo/?step=1";
       link.innerHTML = 'Demo ausprobieren <span aria-hidden="true">→</span>';
     });
     document.querySelector("#exportCopy h2").textContent = "Geprüfte Daten exportieren.";
@@ -191,7 +191,7 @@
       <h2>DataTool passend für Ihren Einsatz kennenlernen.</h2>
       <p>Lernen Sie den Ablauf in der interaktiven Demo kennen – von der erkannten Antwort bis zur gezielten Kontrolle.</p>
       <div class="outro-actions">
-        <a class="cta-button" href="datatool.html?demo=1">Demo ausprobieren</a>
+        <a class="cta-button" href="demo/?step=1">Demo ausprobieren</a>
         <a class="outro-secondary" href="#solutions">Paket ansehen</a>
       </div>
     `;

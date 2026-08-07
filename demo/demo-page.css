@@ -1,0 +1,176 @@
+.standalone-demo {
+  background: #f5f7fb;
+}
+
+.demo-header {
+  position: relative;
+}
+
+.demo-exit {
+  padding: 0.72rem 0.95rem;
+  border: 1px solid #dce3ec;
+  border-radius: 0.75rem;
+  color: #354156;
+  background: #fff;
+  font-size: 0.84rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.demo-progress {
+  width: min(calc(100% - 2rem), 64rem);
+  margin: 2rem auto 0;
+  padding: 1rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border: 1px solid #dce3ec;
+  border-radius: 1rem;
+  background: rgb(255 255 255 / 92%);
+  box-shadow: 0 0.7rem 2rem rgb(23 32 51 / 7%);
+}
+
+.demo-progress p {
+  margin: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+
+.demo-progress p span {
+  color: #087df5;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.demo-progress p strong {
+  font-size: 0.9rem;
+}
+
+.demo-progress ol {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.45rem;
+  list-style: none;
+}
+
+.demo-progress a {
+  padding: 0.58rem 0.72rem;
+  display: block;
+  border-radius: 0.65rem;
+  color: #657186;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.demo-progress a:hover,
+.demo-progress a:focus-visible,
+.demo-progress a.active {
+  color: #fff;
+  background: #087df5;
+}
+
+.demo-content {
+  min-height: 30rem;
+}
+
+.demo-content .product-hero {
+  min-height: auto;
+  margin: 2rem auto;
+  background-color: #fff;
+}
+
+.demo-loading,
+.demo-error {
+  width: min(calc(100% - 2rem), 64rem);
+  margin: 5rem auto;
+  padding: 3rem;
+  border-radius: 1rem;
+  background: #fff;
+  text-align: center;
+}
+
+.demo-error a {
+  color: #087df5;
+  font-weight: 800;
+}
+
+.demo-step-actions {
+  width: min(calc(100% - 2rem), 64rem);
+  margin: 0 auto 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+}
+
+.demo-step-actions > span {
+  color: #7a8598;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.demo-step-button {
+  width: fit-content;
+  padding: 0.85rem 1rem;
+  border-radius: 0.75rem;
+  color: #fff;
+  background: #087df5;
+  font-size: 0.84rem;
+  font-weight: 850;
+  text-decoration: none;
+  box-shadow: 0 0.7rem 1.5rem rgb(8 125 245 / 18%);
+}
+
+.demo-step-button--next {
+  justify-self: end;
+}
+
+.demo-step-button.is-hidden {
+  visibility: hidden;
+}
+
+@media (max-width: 820px) {
+  .demo-progress {
+    margin-top: 1rem;
+    padding: 0.85rem;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .demo-progress p {
+    text-align: center;
+  }
+
+  .demo-progress ol {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .demo-progress a {
+    padding-inline: 0.35rem;
+    text-align: center;
+  }
+
+  .demo-content .product-hero {
+    margin-block: 1rem 2rem;
+  }
+
+  .standalone-demo .datatool-hero.demo-focus-active .product-visual {
+    margin-block: 0.75rem;
+  }
+
+  .demo-step-actions {
+    gap: 0.55rem;
+  }
+
+  .demo-step-button {
+    padding-inline: 0.75rem;
+    font-size: 0.75rem;
+  }
+}

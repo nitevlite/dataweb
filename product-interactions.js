@@ -1,4 +1,13 @@
 (() => {
+  const pageParams = new URLSearchParams(window.location.search);
+  if (
+    pageParams.get("demo") === "1" &&
+    !document.body.classList.contains("standalone-demo")
+  ) {
+    window.location.replace(new URL("./demo/?step=1", window.location.href));
+    return;
+  }
+
   const hero = document.querySelector(".product-hero");
   const carouselLinks = [...document.querySelectorAll(".product-carousel-arrow")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -96,71 +105,6 @@
       navigateProduct(link, direction);
     });
   });
-
-  if (hero && carouselLinks.length === 2) {
-    const products = [
-      { path: "datatool.html", label: "DataTool" },
-      { path: "pdf-toolkit.html", label: "PDF Toolkit" },
-      { path: "eckensetzer.html", label: "Eckensetzer" },
-    ];
-    const currentPath = window.location.pathname.split("/").pop();
-    const currentIndex = Math.max(0, products.findIndex((product) => product.path === currentPath));
-    let hintSeen = false;
-    try {
-      hintSeen = localStorage.getItem("productSwipeHintSeen") === "1";
-    } catch {
-      // The hint may appear again if local storage is unavailable.
-    }
-
-    const swipeNavigation = document.createElement("div");
-    swipeNavigation.className = "product-swipe-navigation";
-    swipeNavigation.setAttribute("aria-label", "Position in den enthaltenen Anwendungen");
-    swipeNavigation.innerHTML = `
-      ${hintSeen ? "" : '<p class="product-swipe-hint"><i aria-hidden="true">← ↔ →</i><span>Nach links oder rechts wischen</span></p>'}
-      <div class="product-swipe-position" aria-live="polite">
-        ${products.map((product, index) => `<span class="${index === currentIndex ? "active" : ""}" aria-hidden="true"></span>`).join("")}
-        <strong>${products[currentIndex].label}</strong>
-      </div>
-    `;
-    const productCopy = hero.querySelector(".product-copy");
-    if (productCopy) {
-      productCopy.after(swipeNavigation);
-    } else {
-      hero.append(swipeNavigation);
-    }
-
-    let touchStart = null;
-    const blockedSwipeTarget = (target) => target instanceof Element && Boolean(
-      target.closest(".product-visual, a, button, input, select, textarea, [role='button']"),
-    );
-    hero.addEventListener("touchstart", (event) => {
-      if (event.touches.length !== 1 || blockedSwipeTarget(event.target)) {
-        touchStart = null;
-        return;
-      }
-      const touch = event.touches[0];
-      touchStart = { x: touch.clientX, y: touch.clientY };
-    }, { passive: true });
-    hero.addEventListener("touchend", (event) => {
-      if (!touchStart || event.changedTouches.length !== 1) return;
-      const touch = event.changedTouches[0];
-      const dx = touch.clientX - touchStart.x;
-      const dy = touch.clientY - touchStart.y;
-      touchStart = null;
-      if (Math.abs(dx) < 64 || Math.abs(dx) < Math.abs(dy) * 1.35) return;
-
-      try {
-        localStorage.setItem("productSwipeHintSeen", "1");
-      } catch {
-        // Swipe navigation works without persistent hint state.
-      }
-      const hint = swipeNavigation.querySelector(".product-swipe-hint");
-      hint?.classList.add("is-dismissed");
-      const direction = dx < 0 ? "next" : "prev";
-      const link = carouselLinks.find((item) => item.classList.contains(`product-carousel-arrow--${direction}`));
-      navigateProduct(link, direction);
-    }, { passive: true });
-  }
 
   document.querySelectorAll("[data-corner-game]").forEach((game) => {
     const tray = game.querySelector("[data-marker-tray]");
@@ -490,7 +434,8 @@
     });
 
     const demoRequested =
-      new URLSearchParams(window.location.search).get("demo") === "1";
+      document.body.classList.contains("standalone-demo") &&
+      pageParams.get("step") === "1";
     if (demoRequested) {
       requestAnimationFrame(() =>
         setFocusMode(true, { showTutorial: true }),

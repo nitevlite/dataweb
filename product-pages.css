@@ -115,10 +115,6 @@ a {
   display: none;
 }
 
-.product-swipe-navigation {
-  display: none;
-}
-
 .product-hero {
   --product-color: var(--blue);
   position: relative;
@@ -2516,71 +2512,38 @@ a {
   }
 
   .product-carousel-arrow {
-    display: none;
-  }
-
-  .product-swipe-navigation {
-    width: min(100%, 25rem);
-    margin: 0.5rem auto 0;
-    display: grid;
-    grid-column: 1 / -1;
-    justify-items: center;
-    gap: 0.55rem;
-    color: #667388;
-    text-align: center;
-  }
-
-  .product-swipe-hint {
-    margin: 0;
-    padding: 0.65rem 0.9rem;
+    position: static;
+    width: min(10rem, 43vw);
+    height: 3.1rem;
+    padding: 0 0.85rem;
     display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    border: 1px solid var(--line);
-    border-radius: 999px;
-    background: rgb(255 255 255 / 92%);
-    box-shadow: 0 0.6rem 1.4rem rgb(23 32 51 / 8%);
+    gap: 0.55rem;
     font-size: 0.75rem;
-    font-weight: 750;
-    transition: opacity 220ms ease, transform 220ms ease;
+    font-weight: 800;
   }
 
-  .product-swipe-hint i {
-    display: inline-block;
-    color: var(--product-color);
-    font-style: normal;
-    animation: swipe-hint 1.8s ease-in-out 2;
+  .product-carousel-arrow::after {
+    content: attr(data-nav-label);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
-  .product-swipe-hint.is-dismissed {
-    opacity: 0;
-    transform: translateY(0.4rem);
+  .product-carousel-arrow span {
+    margin: 0;
+    font-size: 1.3rem;
   }
 
-  .product-swipe-position {
+  .product-carousel {
+    position: static;
+    inset: auto;
+    width: 100%;
+    margin-top: 0.5rem;
     display: flex;
-    align-items: center;
-    gap: 0.55rem;
-  }
-
-  .product-swipe-position span {
-    width: 0.48rem;
-    height: 0.48rem;
-    display: block;
-    border-radius: 50%;
-    background: #cbd3df;
-  }
-
-  .product-swipe-position span.active {
-    width: 1.25rem;
-    border-radius: 999px;
-    background: var(--product-color);
-  }
-
-  .product-swipe-position strong {
-    margin-left: 0.2rem;
-    color: var(--ink);
-    font-size: 0.76rem;
+    grid-column: 1 / -1;
+    justify-content: center;
+    gap: 0.65rem;
+    transform: none;
   }
 
   .product-copy,
@@ -2965,7 +2928,4 @@ a {
     scroll-behavior: auto;
   }
 
-  .product-swipe-hint i {
-    animation: none;
-  }
 }

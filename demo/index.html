@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Probieren Sie DataTool und die enthaltenen Anwendungen direkt im Browser aus." />
+    <base href="../" />
+    <title>DataTool Demo</title>
+    <link rel="stylesheet" href="./product-pages.css?v=20260807-5" />
+    <link rel="stylesheet" href="./demo/demo-page.css?v=20260807" />
+  </head>
+  <body class="standalone-demo">
+    <header class="product-header demo-header">
+      <a class="product-brand" href="./" aria-label="Zur DataTool-Startseite">
+        <img src="./company-logo.png" alt="The Repetitive Company" width="1075" height="334" />
+      </a>
+      <a class="demo-exit" href="./">Demo verlassen</a>
+    </header>
+
+    <nav class="demo-progress" aria-label="Demo-Schritte">
+      <p><span>Interaktive Produkttour</span><strong data-demo-step-label>Schritt 1 von 3</strong></p>
+      <ol>
+        <li><a href="./demo/?step=1" data-step-link="1">DataTool</a></li>
+        <li><a href="./demo/?step=2" data-step-link="2">PDF Toolkit</a></li>
+        <li><a href="./demo/?step=3" data-step-link="3">Eckensetzer</a></li>
+      </ol>
+    </nav>
+
+    <main id="demo-content" class="demo-content" aria-live="polite">
+      <p class="demo-loading">Demo wird geladen …</p>
+    </main>
+
+    <nav class="demo-step-actions" aria-label="In der Demo navigieren">
+      <a class="demo-step-button demo-step-button--back" data-demo-back href="./demo/?step=1">← Zurück</a>
+      <span data-demo-position>1 / 3</span>
+      <a class="demo-step-button demo-step-button--next" data-demo-next href="./demo/?step=2">Weiter →</a>
+    </nav>
+
+    <script src="./demo/demo-page.js?v=20260807"></script>
+  </body>
+</html>
