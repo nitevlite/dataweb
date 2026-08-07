@@ -2484,7 +2484,7 @@ a {
     height: auto;
     padding: 0.8rem 1.05rem;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 0.65rem;
     border-color: var(--line);
     border-radius: 999px;
@@ -2508,7 +2508,7 @@ a {
 
   .product-carousel-arrow--next {
     justify-self: end;
-    justify-content: flex-end;
+    justify-content: center;
     color: #fff;
     border-color: var(--product-color);
     background: var(--product-color);
