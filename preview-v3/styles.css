@@ -170,62 +170,38 @@ section[id] { scroll-margin-top: 5.75rem; }
 .privacy-section { background: #eaf2fb; }
 .privacy-intro h2 { font-size: clamp(2.35rem, 4.5vw, 4.35rem); }
 .privacy-card { border-color: rgb(8 125 245 / 14%); background: rgb(255 255 255 / 88%); box-shadow: 0 0.8rem 2rem rgb(23 32 51 / 5%); }
-.privacy-card h3 { margin-top: 0.9rem; }
+.privacy-card h3 { margin-top: 0.55rem; }
 .privacy-motion {
   position: relative;
-  width: 7.25rem;
-  height: 4.65rem;
+  width: 3.6rem;
+  height: 2.8rem;
   min-height: 0;
   overflow: visible;
 }
 .privacy-motion *, .privacy-motion *::before, .privacy-motion *::after { box-sizing: border-box; }
 
-.privacy-motion--orbit { display: grid; place-items: center; }
-.orbit-ring { position: absolute; width: 4.2rem; height: 4.2rem; border: 1px solid #a9c8e9; border-radius: 50%; }
-.orbit-ring::before { content: ""; position: absolute; inset: 0.45rem; border: 1px dashed rgb(8 125 245 / 18%); border-radius: 50%; }
-.orbit-particle { position: absolute; width: 4.2rem; height: 4.2rem; animation: orbit-loop 3.8s linear infinite; animation-play-state: paused; }
-.orbit-particle i { position: absolute; top: -0.18rem; left: calc(50% - 0.24rem); width: 0.48rem; height: 0.48rem; border: 2px solid #fff; border-radius: 50%; background: var(--v3-blue); box-shadow: 0 0.2rem 0.55rem rgb(8 125 245 / 35%); }
-.orbit-device { position: relative; z-index: 2; width: 2.15rem; height: 2.65rem; border: 1.5px solid #182033; border-radius: 0.42rem; background: #fff; box-shadow: 0 0.35rem 0.75rem rgb(23 32 51 / 10%); }
-.orbit-device::before { content: ""; position: absolute; top: 0.42rem; left: 0.42rem; width: 0.68rem; height: 0.15rem; border-radius: 99px; background: var(--v3-blue); }
-.orbit-device i { position: absolute; top: 1.02rem; right: 0.42rem; left: 0.42rem; height: 0.14rem; border-radius: 99px; background: #d7e5f3; box-shadow: 0 0.42rem #d7e5f3, 0 0.84rem #d7e5f3; }
-.orbit-device b { position: absolute; right: 0.34rem; bottom: 0.3rem; width: 0.36rem; height: 0.36rem; border-radius: 50%; background: #22a35a; }
+.privacy-motion--loop, .privacy-motion--checked { display: grid; place-items: center; }
+.mini-loop { width: 2.25rem; height: 2.25rem; border: 1px solid #9dbfe3; border-radius: 50%; }
+.mini-loop-dot { position: absolute; width: 2.25rem; height: 2.25rem; animation: mini-orbit 3s linear infinite; animation-play-state: paused; }
+.mini-loop-dot i { position: absolute; top: -0.16rem; left: calc(50% - 0.2rem); width: 0.4rem; height: 0.4rem; border: 1px solid #fff; border-radius: 50%; background: var(--v3-blue); }
 
-.privacy-motion--boundary { display: flex; align-items: center; }
-.boundary-source { position: relative; z-index: 2; width: 1.8rem; height: 2.35rem; border: 1.5px solid #182033; border-radius: 0.38rem; background: #fff; }
-.boundary-source::before { content: ""; position: absolute; top: 0.4rem; left: 0.38rem; width: 0.65rem; height: 0.14rem; border-radius: 99px; background: var(--v3-blue); }
-.boundary-source i { display: block; height: 0.13rem; margin: 0.42rem 0.36rem 0; border-radius: 99px; background: #d7e5f3; }
-.boundary-source i:first-child { margin-top: 0.95rem; }
-.boundary-path { position: absolute; left: 1.8rem; width: 4.25rem; height: 1px; background: repeating-linear-gradient(90deg, #adc9e7 0 4px, transparent 4px 8px); }
-.boundary-dot { position: absolute; left: 1.72rem; width: 0.34rem; height: 0.34rem; border-radius: 50%; background: var(--v3-blue); box-shadow: 0 0.15rem 0.4rem rgb(8 125 245 / 28%); animation: boundary-return 4s ease-in-out infinite; animation-play-state: paused; }
-.boundary-dot--one { margin-top: -0.86rem; }
-.boundary-dot--two { animation-delay: 0.22s; }
-.boundary-dot--three { margin-top: 0.86rem; animation-delay: 0.44s; }
-.boundary-limit { position: absolute; left: 6rem; width: 1px; height: 3.8rem; background: repeating-linear-gradient(180deg, #182033 0 4px, transparent 4px 8px); }
-.boundary-limit i { position: absolute; top: calc(50% - 0.48rem); left: -0.48rem; width: 0.96rem; height: 0.96rem; border: 1px solid #a9c8e9; border-radius: 50%; background: #fff; }
-.boundary-limit i::before { content: ""; position: absolute; top: 0.42rem; left: 0.18rem; width: 0.58rem; height: 1.5px; background: var(--v3-blue); transform: rotate(-45deg); }
+.privacy-motion--blocked { display: flex; align-items: center; }
+.mini-track { position: absolute; left: 0.15rem; width: 2.65rem; height: 1px; background: #b5cce5; }
+.mini-travel-dot { position: absolute; left: 0.1rem; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--v3-blue); animation: mini-return 3s ease-in-out infinite; animation-play-state: paused; }
+.mini-x { position: absolute; left: 2.85rem; width: 0.72rem; height: 0.72rem; }
+.mini-x i { position: absolute; top: 0.33rem; left: 0.02rem; width: 0.68rem; height: 1.5px; border-radius: 99px; background: var(--v3-blue); transform: rotate(45deg); }
+.mini-x i:last-child { transform: rotate(-45deg); }
 
-.privacy-motion--approval { display: flex; align-items: center; }
-.approval-card { position: relative; width: 4.65rem; height: 3.25rem; border: 1.5px solid #182033; border-radius: 0.48rem; background: #fff; box-shadow: 0 0.35rem 0.75rem rgb(23 32 51 / 10%); animation: approval-card-in 4.6s ease-in-out infinite; animation-play-state: paused; }
-.approval-card::before { content: ""; position: absolute; top: 0.48rem; left: 0.48rem; width: 1.2rem; height: 0.15rem; border-radius: 99px; background: var(--v3-blue); }
-.approval-card i { position: absolute; right: 0.48rem; left: 0.48rem; height: 0.13rem; border-radius: 99px; background: #d7e5f3; }
-.approval-card i:nth-child(1) { top: 1.15rem; }
-.approval-card i:nth-child(2) { top: 1.62rem; right: 1.2rem; }
-.approval-card i:nth-child(3) { top: 2.09rem; right: 1.7rem; }
-.approval-choice { position: absolute; z-index: 2; right: 0.8rem; top: 1.42rem; display: grid; width: 1.2rem; height: 1.2rem; place-items: center; border: 1.5px solid #a9c8e9; border-radius: 50%; background: #fff; }
-.approval-choice i { display: grid; width: 100%; height: 100%; place-items: center; border-radius: inherit; color: #fff; background: var(--v3-blue); font-size: 0.68rem; font-style: normal; font-weight: 900; transform: scale(1); animation: approval-check 4.6s ease-in-out infinite; animation-play-state: paused; }
-.approval-pointer { position: absolute; z-index: 3; right: -0.1rem; bottom: -0.05rem; width: 0; height: 0; border-top: 0.85rem solid #182033; border-right: 0.42rem solid transparent; border-left: 0.42rem solid transparent; opacity: 0; transform: rotate(-38deg); animation: approval-pointer 4.6s ease-in-out infinite; animation-play-state: paused; }
-.approval-pointer::after { content: ""; position: absolute; top: -0.66rem; left: -0.23rem; width: 0.46rem; height: 0.62rem; border-radius: 0.1rem; background: #182033; }
+.mini-check { width: 2.7rem; height: 2.7rem; overflow: visible; }
+.mini-check circle { fill: none; stroke: #9dbfe3; stroke-width: 1.25; }
+.mini-check path { fill: none; stroke: var(--v3-blue); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 24; stroke-dashoffset: 0; animation: mini-check-draw 3s ease-in-out infinite; animation-play-state: paused; }
 
-.privacy-section.motion-visible .orbit-particle,
-.privacy-section.motion-visible .boundary-dot,
-.privacy-section.motion-visible .approval-card,
-.privacy-section.motion-visible .approval-choice i,
-.privacy-section.motion-visible .approval-pointer { animation-play-state: running; }
-@keyframes orbit-loop { to { transform: rotate(360deg); } }
-@keyframes boundary-return { 0%, 10% { transform: translateX(0); opacity: 0; } 20% { opacity: 1; } 55%, 65% { transform: translateX(3.55rem); opacity: 1; } 78%, 90% { transform: translateX(0.35rem); opacity: 1; } 100% { transform: translateX(0); opacity: 0; } }
-@keyframes approval-card-in { 0%, 8% { transform: translateX(-0.65rem); opacity: 0; } 22%, 88% { transform: translateX(0); opacity: 1; } 100% { transform: translateX(-0.2rem); opacity: 0; } }
-@keyframes approval-pointer { 0%, 34% { right: -0.1rem; bottom: -0.05rem; opacity: 0; } 46% { opacity: 1; } 62%, 74% { right: 0.65rem; bottom: 1.05rem; opacity: 1; } 86%, 100% { right: 0.65rem; bottom: 1.05rem; opacity: 0; } }
-@keyframes approval-check { 0%, 60% { transform: scale(0); } 68%, 88% { transform: scale(1); } 100% { transform: scale(0); } }
+.privacy-section.motion-visible .mini-loop-dot,
+.privacy-section.motion-visible .mini-travel-dot,
+.privacy-section.motion-visible .mini-check path { animation-play-state: running; }
+@keyframes mini-orbit { 0% { transform: rotate(0); } 68%, 100% { transform: rotate(360deg); } }
+@keyframes mini-return { 0%, 10% { transform: translateX(0); } 48%, 60% { transform: translateX(2.15rem); } 86%, 100% { transform: translateX(0); } }
+@keyframes mini-check-draw { 0%, 24% { stroke-dashoffset: 24; } 58%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 24; } }
 .privacy-note { margin-top: 2.75rem; }
 .privacy-note a { color: var(--v3-blue-dark); }
 

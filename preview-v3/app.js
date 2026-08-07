@@ -140,27 +140,23 @@
       </div>
       <div class="privacy-grid">
         <article class="privacy-card">
-          <div class="privacy-motion privacy-motion--orbit" aria-hidden="true">
-            <span class="orbit-ring"></span>
-            <span class="orbit-particle"><i></i></span>
-            <span class="orbit-device"><i></i><b></b></span>
+          <div class="privacy-motion privacy-motion--loop" aria-hidden="true">
+            <span class="mini-loop"></span><span class="mini-loop-dot"><i></i></span>
           </div>
           <h3>Vollständig lokal</h3><p>Die Anwendungen verarbeiten Ihre Dokumente und Ergebnisse direkt auf Ihrem Gerät.</p>
         </article>
         <article class="privacy-card">
-          <div class="privacy-motion privacy-motion--boundary" aria-hidden="true">
-            <span class="boundary-source"><i></i><i></i></span>
-            <span class="boundary-path"></span>
-            <span class="boundary-dot boundary-dot--one"></span><span class="boundary-dot boundary-dot--two"></span><span class="boundary-dot boundary-dot--three"></span>
-            <span class="boundary-limit"><i></i></span>
+          <div class="privacy-motion privacy-motion--blocked" aria-hidden="true">
+            <span class="mini-track"></span><span class="mini-travel-dot"></span><span class="mini-x"><i></i><i></i></span>
           </div>
           <h3>Keine externen Dienste</h3><p>Ihre Inhalte werden weder automatisch hochgeladen noch für fremde Dienste oder Modelle verwendet.</p>
         </article>
         <article class="privacy-card">
-          <div class="privacy-motion privacy-motion--approval" aria-hidden="true">
-            <span class="approval-card"><i></i><i></i><i></i></span>
-            <span class="approval-choice"><i>✓</i></span>
-            <span class="approval-pointer"></span>
+          <div class="privacy-motion privacy-motion--checked" aria-hidden="true">
+            <svg class="mini-check" viewBox="0 0 44 44" focusable="false">
+              <circle cx="22" cy="22" r="17"></circle>
+              <path d="M14 22.5 19.5 28 31 16.5"></path>
+            </svg>
           </div>
           <h3>Unter Ihrer Kontrolle</h3><p>Die lokale Verarbeitung unterstützt einen datensparsamen und nachvollziehbaren Arbeitsablauf.</p>
         </article>
