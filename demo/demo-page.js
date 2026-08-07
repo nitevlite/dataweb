@@ -59,7 +59,7 @@
       content.replaceChildren(hero);
 
       const script = document.createElement("script");
-      script.src = "./product-interactions.js?v=20260807-5";
+      script.src = "./product-interactions.js?v=20260807-6";
       document.body.append(script);
     })
     .catch(() => {

@@ -8,8 +8,6 @@
     return;
   }
 
-  const hero = document.querySelector(".product-hero");
-  const carouselLinks = [...document.querySelectorAll(".product-carousel-arrow")];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const productHeader = document.querySelector(".product-header");
   const productNav = document.querySelector(".product-nav");
@@ -68,43 +66,6 @@
     reduceMotion.addEventListener?.("change", updateRevealHeadings);
     updateRevealHeadings();
   }
-
-  try {
-    const incomingDirection = sessionStorage.getItem("productCarouselDirection");
-    sessionStorage.removeItem("productCarouselDirection");
-    if (hero && incomingDirection && !reduceMotion.matches) {
-      hero.classList.add(`carousel-enter-${incomingDirection}`);
-      requestAnimationFrame(() =>
-        requestAnimationFrame(() => hero.classList.add("carousel-enter-active")),
-      );
-    }
-  } catch {
-    // The carousel still works as a normal link when storage is unavailable.
-  }
-
-  const navigateProduct = (link, direction) => {
-    if (!link) return;
-    if (!reduceMotion.matches) {
-      try {
-        sessionStorage.setItem("productCarouselDirection", direction);
-      } catch {
-        // Navigation and the outgoing animation remain available.
-      }
-      hero?.classList.add(`carousel-leave-${direction}`);
-    }
-    window.setTimeout(() => {
-      window.location.href = link.href;
-    }, hero && !reduceMotion.matches ? 340 : 0);
-  };
-
-  carouselLinks.forEach((link) => {
-    link.addEventListener("click", (event) => {
-      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      const direction = link.classList.contains("product-carousel-arrow--next") ? "next" : "prev";
-      navigateProduct(link, direction);
-    });
-  });
 
   document.querySelectorAll("[data-corner-game]").forEach((game) => {
     const tray = game.querySelector("[data-marker-tray]");
