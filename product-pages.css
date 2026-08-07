@@ -34,6 +34,9 @@ a {
 }
 
 .product-header {
+  position: sticky;
+  top: 0;
+  z-index: 60;
   min-height: 5.5rem;
   padding: 0.8rem max(1.5rem, calc((100vw - 76rem) / 2));
   display: flex;
@@ -41,7 +44,8 @@ a {
   justify-content: space-between;
   gap: 1.5rem;
   border-bottom: 1px solid var(--line);
-  background: #fff;
+  background: rgb(255 255 255 / 94%);
+  backdrop-filter: blur(18px);
 }
 
 .product-brand {
@@ -73,9 +77,10 @@ a {
 
 .product-nav .tour-link {
   padding: 0.72rem 0.95rem;
-  border-radius: 999px;
+  border-radius: 0.75rem;
   color: #fff;
-  background: var(--ink);
+  background: #087df5;
+  box-shadow: 0 0.65rem 1.35rem rgb(8 125 245 / 20%);
 }
 
 .product-nav .tour-link:visited,
@@ -83,7 +88,15 @@ a {
 .product-nav .tour-link:focus-visible,
 .product-nav .tour-link:active {
   color: #fff;
-  background: #0f172a;
+  background: #0065d6;
+}
+
+.product-menu-toggle {
+  display: none;
+}
+
+.product-swipe-navigation {
+  display: none;
 }
 
 .product-hero {
@@ -2329,14 +2342,54 @@ a {
 @media (max-width: 820px) {
   .product-header {
     min-height: 4.75rem;
+    padding: 0.7rem 1.15rem;
   }
 
   .product-brand {
     width: 8.5rem;
   }
 
-  .product-nav a:not(.tour-link) {
+  .product-menu-toggle {
+    padding: 0.62rem 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    border: 1px solid var(--line);
+    border-radius: 0.7rem;
+    color: var(--ink);
+    background: #f7f9fc;
+    font: inherit;
+    font-size: 0.84rem;
+    font-weight: 800;
+  }
+
+  .product-nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    right: 0;
+    left: 0;
+    padding: 0.85rem 1.15rem 1.15rem;
     display: none;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0.25rem;
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    box-shadow: 0 1rem 2rem rgb(23 32 51 / 10%);
+  }
+
+  .product-header.menu-open .product-nav {
+    display: flex;
+  }
+
+  .product-nav a {
+    padding: 0.75rem;
+    border-radius: 0.6rem;
+  }
+
+  .product-nav .tour-link {
+    margin-top: 0.25rem;
+    text-align: center;
   }
 
   .product-hero {
@@ -2347,16 +2400,71 @@ a {
   }
 
   .product-carousel-arrow {
-    width: 2.25rem;
-    height: 4rem;
+    display: none;
   }
 
-  .product-carousel-arrow--prev {
-    left: 1rem;
+  .product-swipe-navigation {
+    width: min(100%, 25rem);
+    margin: 0.5rem auto 0;
+    display: grid;
+    grid-column: 1 / -1;
+    justify-items: center;
+    gap: 0.55rem;
+    color: #667388;
+    text-align: center;
   }
 
-  .product-carousel-arrow--next {
-    right: 1rem;
+  .product-swipe-hint {
+    margin: 0;
+    padding: 0.65rem 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 92%);
+    box-shadow: 0 0.6rem 1.4rem rgb(23 32 51 / 8%);
+    font-size: 0.75rem;
+    font-weight: 750;
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  .product-swipe-hint i {
+    display: inline-block;
+    color: var(--product-color);
+    font-style: normal;
+    animation: swipe-hint 1.8s ease-in-out 2;
+  }
+
+  .product-swipe-hint.is-dismissed {
+    opacity: 0;
+    transform: translateY(0.4rem);
+  }
+
+  .product-swipe-position {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .product-swipe-position span {
+    width: 0.48rem;
+    height: 0.48rem;
+    display: block;
+    border-radius: 50%;
+    background: #cbd3df;
+  }
+
+  .product-swipe-position span.active {
+    width: 1.25rem;
+    border-radius: 999px;
+    background: var(--product-color);
+  }
+
+  .product-swipe-position strong {
+    margin-left: 0.2rem;
+    color: var(--ink);
+    font-size: 0.76rem;
   }
 
   .product-copy,
@@ -2511,6 +2619,12 @@ a {
     align-items: flex-start;
     flex-direction: column;
   }
+}
+
+@keyframes swipe-hint {
+  0%, 100% { transform: translateX(0); }
+  35% { transform: translateX(-0.3rem); }
+  70% { transform: translateX(0.3rem); }
 }
 
 @media (max-width: 560px) {
@@ -2717,5 +2831,9 @@ a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .product-swipe-hint i {
+    animation: none;
   }
 }

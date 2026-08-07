@@ -1,0 +1,233 @@
+(() => {
+  const productPages = ["datatool.html", "pdf-toolkit.html", "eckensetzer.html"];
+
+  const appendV3Context = (href) => {
+    const url = new URL(href, window.location.href);
+    if (!productPages.some((page) => url.pathname.endsWith(`/${page}`))) return href;
+    url.searchParams.set("from", "v3");
+    return `${url.pathname}${url.search}${url.hash}`;
+  };
+
+  const providerLink = (base, prompt, parameter = "q") =>
+    `${base}${base.includes("?") ? "&" : "?"}${parameter}=${encodeURIComponent(prompt)}`;
+
+  const buildAiSection = () => {
+    const prompt = [
+      "Fasse DataTool anhand der öffentlichen Produktseite https://nitevlite.github.io/dataweb/preview-v3/ zusammen.",
+      "Erkläre den lokalen Ablauf von der Vorbereitung der Fragebögen über Erkennung und gezielte Kontrolle bis zum Export.",
+      "Ordne außerdem PDF Toolkit und Eckensetzer als vorbereitende Anwendungen ein.",
+      "Bewerte die Vorteile lokaler Verarbeitung und weise darauf hin, dass keine Fragebögen oder Auswertungsdaten an externe KI-Dienste übertragen werden.",
+    ].join(" ");
+
+    const section = document.createElement("section");
+    section.className = "ai-short-version";
+    section.setAttribute("aria-labelledby", "ai-short-title");
+    section.innerHTML = `
+      <div class="ai-short-copy">
+        <p class="eyebrow">Öffentliche Produktinformationen</p>
+        <h2 id="ai-short-title">Lieber die Kurzversion?</h2>
+        <p>
+          Lassen Sie sich DataTool und den lokalen Auswertungsablauf von Ihrer
+          bevorzugten KI zusammenfassen. Es werden ausschließlich öffentlich
+          verfügbare Informationen verwendet – keine Fragebögen oder Auswertungsdaten.
+        </p>
+      </div>
+      <div class="ai-provider-list" aria-label="KI-Anbieter für eine Zusammenfassung">
+        <a href="${providerLink("https://chatgpt.com/", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit ChatGPT zusammenfassen">
+          <span class="ai-mark ai-mark--chatgpt" aria-hidden="true">◎</span><strong>ChatGPT</strong>
+        </a>
+        <a href="${providerLink("https://www.google.com/search?udm=50&aep=11", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit Google AI Mode und Gemini zusammenfassen">
+          <span class="ai-mark ai-mark--gemini" aria-hidden="true">✦</span><strong>Gemini</strong>
+        </a>
+        <a href="${providerLink("https://claude.ai/new", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit Claude zusammenfassen">
+          <span class="ai-mark ai-mark--claude" aria-hidden="true">✺</span><strong>Claude</strong>
+        </a>
+        <a href="${providerLink("https://copilot.microsoft.com/", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit Microsoft Copilot zusammenfassen">
+          <span class="ai-mark ai-mark--copilot" aria-hidden="true">◇</span><strong>Copilot</strong>
+        </a>
+      </div>
+    `;
+    return section;
+  };
+
+  const transformPage = () => {
+    const header = document.querySelector(".site-header");
+    const intro = document.querySelector(".intro");
+    const story = document.querySelector("#scrollStory");
+    const suite = document.querySelector("#solutions");
+    const privacy = document.querySelector("#datenschutz");
+    const pricing = document.querySelector("#preis");
+    const outro = document.querySelector(".outro");
+    const footer = document.querySelector(".site-footer");
+
+    header.innerHTML = `
+      <a class="brand" href="preview-v3/" aria-label="The Repetitive Company – V3 Startseite">
+        <img src="company-logo.png" alt="The Repetitive Company" width="1075" height="334" />
+      </a>
+      <nav class="header-nav" id="headerNav" aria-label="Seitennavigation">
+        <a href="#ablauf">DataTool</a>
+        <a href="#solutions">Anwendungen</a>
+        <a href="#datenschutz">Datenschutz</a>
+        <a href="#preis">Preis</a>
+        <a class="solutions-link" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
+      </nav>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="headerNav">
+        <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>Menü</span>
+      </button>
+    `;
+
+    intro.innerHTML = `
+      <p class="eyebrow">Automatische Fragebogenauswertung</p>
+      <h1 id="intro-title">Aus Fragebögen werden verlässliche Daten.</h1>
+      <p>
+        Vom ausgefüllten Fragebogen bis zum geprüften Datensatz – ohne
+        mühsames Abtippen und mit voller Kontrolle über jedes Ergebnis.
+      </p>
+      <div class="hero-actions">
+        <a class="cta-button hero-demo" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
+        <a class="hero-secondary" href="#solutions">Paket ansehen <span aria-hidden="true">↓</span></a>
+      </div>
+    `;
+
+    const trust = document.createElement("aside");
+    trust.className = "v3-trust-bar";
+    trust.setAttribute("aria-label", "Produkteigenschaften");
+    trust.innerHTML = `
+      <span><i aria-hidden="true">✓</i> Lokal verarbeitet</span>
+      <span><i aria-hidden="true">✓</i> Keine Cloud-Übertragung</span>
+      <span><i aria-hidden="true">✓</i> Strukturierter Export</span>
+    `;
+    intro.after(trust);
+
+    const workflowIntro = document.createElement("section");
+    workflowIntro.className = "v3-workflow-intro";
+    workflowIntro.id = "ablauf";
+    workflowIntro.innerHTML = `
+      <p class="eyebrow">Ein klarer Ablauf</p>
+      <h2>Vom ausgefüllten Fragebogen zum geprüften Datensatz.</h2>
+      <p class="scroll-reveal" data-scroll-reveal>
+        Sie prüfen gezielt die Ergebnisse, bei denen eine Entscheidung notwendig ist – statt jede Antwort erneut zu übertragen.
+      </p>
+    `;
+    trust.after(workflowIntro);
+
+    document.querySelectorAll(".story-try-link").forEach((link) => {
+      link.href = "datatool.html?demo=1&from=v3";
+      link.innerHTML = 'Demo ausprobieren <span aria-hidden="true">→</span>';
+    });
+    document.querySelector("#exportCopy h2").textContent = "Geprüfte Daten exportieren.";
+    document.querySelector("#exportCopy > p:not(.step-label)").textContent =
+      "Übergeben Sie die strukturierten Ergebnisse an Tabellen, Statistikprogramme, Dokumentationen oder weitere lokale Arbeitsschritte.";
+
+    suite.before(buildAiSection());
+
+    privacy.innerHTML = `
+      <div class="privacy-intro">
+        <p class="eyebrow">Datenschutz von Anfang an</p>
+        <h2 id="privacy-title">Ihre Daten bleiben dort, wo sie hingehören.</h2>
+        <p>
+          Erkennung, Kontrolle und Export erfolgen innerhalb Ihrer eigenen
+          Arbeitsumgebung. Dokumente, Antworten und Auswertungsdaten werden nicht
+          automatisch an uns, externe Cloud-Dienste oder KI-Anbieter übertragen.
+        </p>
+      </div>
+      <div class="privacy-grid">
+        <article class="privacy-card"><span class="privacy-icon" aria-hidden="true">01</span><h3>Vollständig lokal</h3><p>Die Anwendungen verarbeiten Ihre Dokumente und Ergebnisse direkt auf Ihrem Gerät.</p></article>
+        <article class="privacy-card"><span class="privacy-icon" aria-hidden="true">02</span><h3>Keine externen Dienste</h3><p>Ihre Inhalte werden weder automatisch hochgeladen noch für fremde Dienste oder Modelle verwendet.</p></article>
+        <article class="privacy-card"><span class="privacy-icon" aria-hidden="true">03</span><h3>Unter Ihrer Kontrolle</h3><p>Die lokale Verarbeitung unterstützt einen datensparsamen und nachvollziehbaren Arbeitsablauf.</p></article>
+      </div>
+      <p class="privacy-note">Weitere Einzelheiten finden Sie in unserer <a href="datenschutz.html">Datenschutzinformation für die Anwendungen</a>.</p>
+    `;
+
+    pricing.innerHTML = `
+      <div class="pricing-copy">
+        <p class="eyebrow">DataTool Komplettpaket</p>
+        <h2 id="pricing-title">Der vollständige Workflow. Einmal kalkuliert.</h2>
+        <p>
+          Sie erhalten DataTool, PDF Toolkit und Eckensetzer als einsatzbereites
+          Komplettpaket – ohne laufende Gebühren pro Fragebogen oder verarbeiteter Seite.
+        </p>
+        <div class="support-highlight">
+          <span class="support-highlight-icon" aria-hidden="true">✓</span>
+          <p><small>Inklusive</small><strong>12 Monate Updates &amp; persönlicher Support</strong></p>
+        </div>
+      </div>
+      <article class="pricing-card">
+        <p class="pricing-label">Komplettpaket ab</p>
+        <p class="pricing-value"><strong>3.600&nbsp;€</strong><span>netto</span></p>
+        <p class="pricing-subline">Der konkrete Preis richtet sich nach Einsatzumfang und Anzahl der Arbeitsplätze.</p>
+        <h3>Im Paket enthalten</h3>
+        <ul class="included-list">
+          <li>DataTool zur automatischen Fragebogenauswertung</li>
+          <li>PDF Toolkit zum Aufteilen, Entfernen und Zusammenführen</li>
+          <li>Eckensetzer zur Vorbereitung Ihrer Dokumente</li>
+          <li>Gemeinsame Startoberfläche</li>
+          <li>Persönliche Einrichtung und Einführung</li>
+          <li>Unterstützung beim ersten Fragebogen</li>
+          <li>12 Monate Updates und persönlicher Support</li>
+          <li>Lokale Verarbeitung ohne Seiten- oder Übertragungsgebühren</li>
+        </ul>
+        <p class="pricing-tax">Zuzüglich gesetzlicher Umsatzsteuer.</p>
+      </article>
+    `;
+
+    outro.innerHTML = `
+      <p class="eyebrow">Direkt kennenlernen</p>
+      <h2>Prüfen Sie DataTool an einem konkreten Beispiel.</h2>
+      <p>Lernen Sie den Ablauf in der interaktiven Demo kennen – von der erkannten Antwort bis zur gezielten Kontrolle.</p>
+      <div class="outro-actions">
+        <a class="cta-button" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
+        <a class="outro-secondary" href="#solutions">Paket ansehen</a>
+      </div>
+    `;
+
+    footer.innerHTML = `
+      <span>© 2026 The Repetitive Company GesbR</span>
+      <nav aria-label="Rechtliche Informationen">
+        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a>
+      </nav>
+    `;
+
+    document.querySelectorAll("a[href]").forEach((link) => {
+      link.href = appendV3Context(link.getAttribute("href"));
+    });
+
+    const reveal = document.querySelector("[data-scroll-reveal]");
+    const words = reveal.textContent.trim().split(/\s+/);
+    reveal.innerHTML = words.map((word) => `<span>${word}</span>`).join(" ");
+
+    const updateReveal = () => {
+      const rect = reveal.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.82 - rect.top) / (window.innerHeight * 0.58)));
+      const activeCount = Math.round(progress * words.length);
+      reveal.querySelectorAll("span").forEach((word, index) => word.classList.toggle("active", index < activeCount));
+    };
+    window.addEventListener("scroll", updateReveal, { passive: true });
+    window.addEventListener("resize", updateReveal);
+    updateReveal();
+
+    document.body.classList.remove("v3-loading");
+    document.body.classList.add("v3-ready");
+
+    const animationScript = document.createElement("script");
+    animationScript.src = "preview-v3/animation.js";
+    document.body.append(animationScript);
+  };
+
+  fetch("index.html")
+    .then((response) => {
+      if (!response.ok) throw new Error(`V1 konnte nicht geladen werden (${response.status})`);
+      return response.text();
+    })
+    .then((html) => {
+      const source = new DOMParser().parseFromString(html, "text/html");
+      source.querySelectorAll("script").forEach((script) => script.remove());
+      document.body.innerHTML = source.body.innerHTML;
+      transformPage();
+    })
+    .catch((error) => {
+      document.querySelector(".v3-loader p").textContent = "V3 konnte nicht geladen werden.";
+      console.error(error);
+    });
+})();
