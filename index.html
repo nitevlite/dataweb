@@ -16,7 +16,7 @@
     <title>DataTool – Fragebögen automatisch auswerten</title>
     <link rel="canonical" href="./" />
     <link rel="stylesheet" href="./styles.css" />
-    <link rel="stylesheet" href="./site.css?v=20260807-geo1" />
+    <link rel="stylesheet" href="./site.css?v=20260807-workflow1" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -441,12 +441,36 @@
           </p>
         </div>
         <ol class="workflow-summary-list">
-          <li><span>01</span><div><h3>Vorlage einrichten</h3><p>Antwortbereiche und auswählbare Werte werden einmal auf dem leeren Referenzfragebogen definiert.</p></div></li>
-          <li><span>02</span><div><h3>Dokumente vorbereiten</h3><p>PDFs werden bei Bedarf aufgeteilt, bereinigt und vor dem Druck mit stabilen Eckmarkierungen versehen.</p></div></li>
-          <li><span>03</span><div><h3>Ausgefüllte PDFs laden</h3><p>Einzelne Dateien oder größere Dokumentstapel werden gemeinsam in DataTool geöffnet.</p></div></li>
-          <li><span>04</span><div><h3>Seiten ausrichten und Antworten erkennen</h3><p>DataTool gleicht die Seiten mit der Vorlage ab und übernimmt markierte Antwortfelder in strukturierte Werte.</p></div></li>
-          <li><span>05</span><div><h3>Am Original kontrollieren</h3><p>Ergebnisse werden direkt über dem Fragebogen angezeigt; unklare oder falsche Werte lassen sich korrigieren.</p></div></li>
-          <li><span>06</span><div><h3>Geprüfte Daten exportieren</h3><p>Die kontrollierten Ergebnisse werden gesammelt für Tabellen, Statistikprogramme oder andere Systeme ausgegeben.</p></div></li>
+          <li data-workflow-visual="template">
+            <span class="workflow-step-number">01</span>
+            <div><h3>Vorlage einrichten</h3><p>Antwortbereiche und auswählbare Werte werden einmal auf dem leeren Referenzfragebogen definiert.</p></div>
+            <span class="workflow-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+          </li>
+          <li data-workflow-visual="prepare">
+            <span class="workflow-step-number">02</span>
+            <div><h3>Dokumente vorbereiten</h3><p>PDFs werden bei Bedarf aufgeteilt, bereinigt und vor dem Druck mit stabilen Eckmarkierungen versehen.</p></div>
+            <span class="workflow-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+          </li>
+          <li data-workflow-visual="load">
+            <span class="workflow-step-number">03</span>
+            <div><h3>Ausgefüllte PDFs laden</h3><p>Einzelne Dateien oder größere Dokumentstapel werden gemeinsam in DataTool geöffnet.</p></div>
+            <span class="workflow-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+          </li>
+          <li data-workflow-visual="recognize">
+            <span class="workflow-step-number">04</span>
+            <div><h3>Seiten ausrichten und Antworten erkennen</h3><p>DataTool gleicht die Seiten mit der Vorlage ab und übernimmt markierte Antwortfelder in strukturierte Werte.</p></div>
+            <span class="workflow-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+          </li>
+          <li data-workflow-visual="review">
+            <span class="workflow-step-number">05</span>
+            <div><h3>Am Original kontrollieren</h3><p>Ergebnisse werden direkt über dem Fragebogen angezeigt; unklare oder falsche Werte lassen sich korrigieren.</p></div>
+            <span class="workflow-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+          </li>
+          <li data-workflow-visual="export">
+            <span class="workflow-step-number">06</span>
+            <div><h3>Geprüfte Daten exportieren</h3><p>Die kontrollierten Ergebnisse werden gesammelt für Tabellen, Statistikprogramme oder andere Systeme ausgegeben.</p></div>
+            <span class="workflow-mini" aria-hidden="true"><i></i><i></i><i></i></span>
+          </li>
         </ol>
         <aside class="questionnaire-note" aria-labelledby="questionnaire-note-title">
           <h3 id="questionnaire-note-title">Welche Fragebögen eignen sich?</h3>

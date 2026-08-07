@@ -226,6 +226,53 @@
     window.addEventListener("resize", updateReveal);
     updateReveal();
 
+    const workflowList = document.querySelector(".workflow-summary-list");
+    const workflowSteps = workflowList ? [...workflowList.querySelectorAll("li")] : [];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (workflowList && workflowSteps.length) {
+      let workflowFrame = 0;
+
+      const updateWorkflow = () => {
+        workflowFrame = 0;
+
+        if (reducedMotion.matches) {
+          workflowList.style.setProperty("--workflow-progress", "1");
+          workflowSteps.forEach((step) => {
+            step.classList.add("is-reached");
+            step.classList.remove("is-current");
+          });
+          return;
+        }
+
+        const rect = workflowList.getBoundingClientRect();
+        const startLine = window.innerHeight * 0.78;
+        const endLine = window.innerHeight * 0.3;
+        const travel = rect.height + startLine - endLine;
+        const progress = Math.max(0, Math.min(1, (startLine - rect.top) / travel));
+        const reachedIndex = Math.min(
+          workflowSteps.length - 1,
+          Math.floor(progress * (workflowSteps.length + 0.35) - 0.15),
+        );
+
+        workflowList.style.setProperty("--workflow-progress", progress.toFixed(3));
+        workflowSteps.forEach((step, index) => {
+          step.classList.toggle("is-reached", index <= reachedIndex);
+          step.classList.toggle("is-current", index === reachedIndex);
+        });
+      };
+
+      const requestWorkflowUpdate = () => {
+        if (workflowFrame) return;
+        workflowFrame = requestAnimationFrame(updateWorkflow);
+      };
+
+      window.addEventListener("scroll", requestWorkflowUpdate, { passive: true });
+      window.addEventListener("resize", requestWorkflowUpdate);
+      reducedMotion.addEventListener?.("change", requestWorkflowUpdate);
+      updateWorkflow();
+    }
+
     const animationScript = document.createElement("script");
     animationScript.src = "site-animation.js?v=20260807";
     animationScript.addEventListener("load", () => {
