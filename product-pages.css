@@ -336,7 +336,8 @@ a {
     gap 520ms cubic-bezier(0.22, 1, 0.36, 1),
     opacity 360ms ease,
     transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
-    width 520ms cubic-bezier(0.22, 1, 0.36, 1);
+    width 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    margin 520ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .datatool-hero .product-copy {
@@ -346,7 +347,7 @@ a {
 
 .datatool-hero.demo-focus-active {
   min-height: 0;
-  padding-block: 6rem;
+  padding-block: 0;
   grid-template-columns: minmax(0, 1fr);
   gap: 0;
   padding-inline: clamp(4.5rem, 7vw, 7rem);
@@ -359,6 +360,7 @@ a {
 .datatool-hero.demo-focus-active .product-visual {
   width: min(100%, 64rem);
   max-width: none;
+  margin-block: 8rem;
   grid-column: 1;
   justify-self: center;
   transform: scale(1.02);
@@ -2714,7 +2716,7 @@ a {
 
   .datatool-hero.demo-focus-active {
     min-height: 0;
-    padding-block: 3rem;
+    padding-block: 0;
     padding-inline: 1.25rem;
     grid-template-columns: minmax(0, 1fr);
   }
@@ -2726,6 +2728,7 @@ a {
   .datatool-hero.demo-focus-active .product-visual {
     width: 100%;
     max-width: calc(100vw - 2.5rem);
+    margin-block: 4rem;
     grid-column: 1;
     transform: none;
   }
@@ -2941,7 +2944,7 @@ a {
 
   .datatool-hero.demo-focus-active {
     min-height: 0;
-    padding-block: 4.5rem;
+    padding-block: 0;
     grid-template-columns: minmax(0, 1fr);
     padding-inline: clamp(4rem, 7vw, 6rem);
   }
@@ -2952,6 +2955,7 @@ a {
 
   .datatool-hero.demo-focus-active .product-visual {
     width: min(100%, 58rem);
+    margin-block: 6rem;
     transform: none;
   }
 }
