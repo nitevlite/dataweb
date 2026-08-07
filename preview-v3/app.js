@@ -2,7 +2,7 @@
   const productPages = ["datatool.html", "pdf-toolkit.html", "eckensetzer.html"];
 
   const appendV3Context = (href) => {
-    const url = new URL(href, window.location.href);
+    const url = new URL(href, document.baseURI);
     if (!productPages.some((page) => url.pathname.endsWith(`/${page}`))) return href;
     url.searchParams.set("from", "v3");
     return `${url.pathname}${url.search}${url.hash}`;
@@ -34,16 +34,16 @@
       </div>
       <div class="ai-provider-list" aria-label="KI-Anbieter für eine Zusammenfassung">
         <a href="${providerLink("https://chatgpt.com/", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit ChatGPT zusammenfassen">
-          <span class="ai-mark ai-mark--chatgpt" aria-hidden="true">◎</span><strong>ChatGPT</strong>
+          <span class="ai-mark" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/ChatGPT-Logo.svg" alt="" loading="lazy" referrerpolicy="no-referrer" /></span><strong>ChatGPT</strong>
         </a>
         <a href="${providerLink("https://www.google.com/search?udm=50&aep=11", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit Google AI Mode und Gemini zusammenfassen">
-          <span class="ai-mark ai-mark--gemini" aria-hidden="true">✦</span><strong>Gemini</strong>
+          <span class="ai-mark" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Google_Gemini_icon_2025.svg" alt="" loading="lazy" referrerpolicy="no-referrer" /></span><strong>Gemini</strong>
         </a>
         <a href="${providerLink("https://claude.ai/new", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit Claude zusammenfassen">
-          <span class="ai-mark ai-mark--claude" aria-hidden="true">✺</span><strong>Claude</strong>
+          <span class="ai-mark" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Claude_AI_logo.svg" alt="" loading="lazy" referrerpolicy="no-referrer" /></span><strong>Claude</strong>
         </a>
         <a href="${providerLink("https://copilot.microsoft.com/", prompt)}" target="_blank" rel="noopener noreferrer" aria-label="DataTool mit Microsoft Copilot zusammenfassen">
-          <span class="ai-mark ai-mark--copilot" aria-hidden="true">◇</span><strong>Copilot</strong>
+          <span class="ai-mark ai-mark--wide" aria-hidden="true"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Microsoft_Copilot_wordmark.svg" alt="" loading="lazy" referrerpolicy="no-referrer" /></span><strong>Copilot</strong>
         </a>
       </div>
     `;
@@ -65,10 +65,10 @@
         <img src="company-logo.png" alt="The Repetitive Company" width="1075" height="334" />
       </a>
       <nav class="header-nav" id="headerNav" aria-label="Seitennavigation">
-        <a href="#ablauf">DataTool</a>
-        <a href="#solutions">Anwendungen</a>
-        <a href="#datenschutz">Datenschutz</a>
-        <a href="#preis">Preis</a>
+        <a href="preview-v3/#ablauf">DataTool</a>
+        <a href="preview-v3/#solutions">Anwendungen</a>
+        <a href="preview-v3/#datenschutz">Datenschutz</a>
+        <a href="preview-v3/#preis">Preis</a>
         <a class="solutions-link" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="headerNav">
@@ -86,7 +86,7 @@
       </p>
       <div class="hero-actions">
         <a class="cta-button hero-demo" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
-        <a class="hero-secondary" href="#solutions">Paket ansehen <span aria-hidden="true">↓</span></a>
+        <a class="hero-secondary" href="preview-v3/#solutions">Paket ansehen <span aria-hidden="true">↓</span></a>
       </div>
     `;
 
@@ -105,8 +105,8 @@
     workflowIntro.id = "ablauf";
     workflowIntro.innerHTML = `
       <p class="eyebrow">Ein klarer Ablauf</p>
-      <h2>Vom ausgefüllten Fragebogen zum geprüften Datensatz.</h2>
-      <p class="scroll-reveal" data-scroll-reveal>
+      <h2 class="scroll-reveal" data-scroll-reveal>Vom ausgefüllten Fragebogen zum geprüften Datensatz.</h2>
+      <p class="workflow-explainer">
         Sie prüfen gezielt die Ergebnisse, bei denen eine Entscheidung notwendig ist – statt jede Antwort erneut zu übertragen.
       </p>
     `;
@@ -128,7 +128,7 @@
         <h2 id="privacy-title">Ihre Daten bleiben dort, wo sie hingehören.</h2>
         <p>
           Erkennung, Kontrolle und Export erfolgen innerhalb Ihrer eigenen
-          Arbeitsumgebung. Dokumente, Antworten und Auswertungsdaten werden nicht
+          Arbeitsumgebung. Dokumente, Antworten und Auswertungsdaten werden <u>nicht</u>
           automatisch an uns, externe Cloud-Dienste oder KI-Anbieter übertragen.
         </p>
       </div>
@@ -143,7 +143,7 @@
     pricing.innerHTML = `
       <div class="pricing-copy">
         <p class="eyebrow">DataTool Komplettpaket</p>
-        <h2 id="pricing-title">Der vollständige Workflow. Einmal kalkuliert.</h2>
+        <h2 id="pricing-title">Ein Preis für den vollständigen Ablauf.</h2>
         <p>
           Sie erhalten DataTool, PDF Toolkit und Eckensetzer als einsatzbereites
           Komplettpaket – ohne laufende Gebühren pro Fragebogen oder verarbeiteter Seite.
@@ -174,11 +174,11 @@
 
     outro.innerHTML = `
       <p class="eyebrow">Direkt kennenlernen</p>
-      <h2>Prüfen Sie DataTool an einem konkreten Beispiel.</h2>
+      <h2>DataTool passend für Ihren Einsatz kennenlernen.</h2>
       <p>Lernen Sie den Ablauf in der interaktiven Demo kennen – von der erkannten Antwort bis zur gezielten Kontrolle.</p>
       <div class="outro-actions">
         <a class="cta-button" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
-        <a class="outro-secondary" href="#solutions">Paket ansehen</a>
+        <a class="outro-secondary" href="preview-v3/#solutions">Paket ansehen</a>
       </div>
     `;
 

@@ -73,7 +73,7 @@
 
     storyCopy.style.opacity = (1 - exportIn).toFixed(3);
     storyCopy.style.transform = "none";
-    sceneContent.style.opacity = (1 - exportIn * 0.76).toFixed(3);
+    sceneContent.style.opacity = (1 - exportIn).toFixed(3);
     sceneContent.style.transform = `scale(${1 - exportIn * 0.025})`;
     exportCopy.style.opacity = exportIn.toFixed(3);
     exportCopy.style.transform = `translate3d(${(1 - exportIn) * 3}rem, 0, 0)`;
