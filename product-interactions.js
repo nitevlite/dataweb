@@ -5,33 +5,6 @@
   const productHeader = document.querySelector(".product-header");
   const productNav = document.querySelector(".product-nav");
   const productMenuToggle = document.querySelector(".product-menu-toggle");
-  const pageParams = new URLSearchParams(window.location.search);
-  const fromV3 = pageParams.get("from") === "v3";
-
-  if (fromV3) {
-    const home = document.querySelector("[data-main-home]");
-    if (home) home.href = "./preview-v3/";
-    document.querySelectorAll("[data-main-target]").forEach((link) => {
-      link.href = `./preview-v3/#${link.dataset.mainTarget}`;
-    });
-    const demoLink = document.querySelector("[data-demo-link]");
-    if (demoLink) demoLink.href = "./datatool.html?demo=1&from=v3";
-    document.querySelectorAll('a[href^="./index.html#"], a[href^="index.html#"]').forEach((link) => {
-      const target = new URL(link.href).hash.slice(1);
-      link.href = `./preview-v3/#${target === "scrollStory" ? "ablauf" : target}`;
-    });
-    document.querySelectorAll('a[href$="impressum.html"], a[href$="datenschutz.html"], a[href$="agb.html"]').forEach((link) => {
-      const url = new URL(link.href);
-      url.searchParams.set("from", "v3");
-      link.href = `${url.pathname}${url.search}${url.hash}`;
-    });
-    carouselLinks.forEach((link) => {
-      const url = new URL(link.href);
-      url.searchParams.set("from", "v3");
-      link.href = url.href;
-    });
-  }
-
   const closeProductMenu = () => {
     productHeader?.classList.remove("menu-open");
     productMenuToggle?.setAttribute("aria-expanded", "false");

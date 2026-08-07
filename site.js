@@ -1,26 +1,10 @@
 (() => {
-  const contextPages = [
-    "datatool.html",
-    "pdf-toolkit.html",
-    "eckensetzer.html",
-    "impressum.html",
-    "datenschutz.html",
-    "agb.html",
-  ];
-
-  const appendV3Context = (href) => {
-    const url = new URL(href, document.baseURI);
-    if (!contextPages.some((page) => url.pathname.endsWith(`/${page}`))) return href;
-    url.searchParams.set("from", "v3");
-    return `${url.pathname}${url.search}${url.hash}`;
-  };
-
   const providerLink = (base, prompt, parameter = "q") =>
     `${base}${base.includes("?") ? "&" : "?"}${parameter}=${encodeURIComponent(prompt)}`;
 
   const buildAiSection = () => {
     const prompt = [
-      "Fasse DataTool anhand der öffentlichen Produktseite https://nitevlite.github.io/dataweb/preview-v3/ zusammen.",
+      "Fasse DataTool anhand der öffentlichen Produktseite https://nitevlite.github.io/dataweb/ zusammen.",
       "Erkläre den lokalen Ablauf von der Vorbereitung der Fragebögen über Erkennung und gezielte Kontrolle bis zum Export.",
       "Ordne außerdem PDF Toolkit und Eckensetzer als vorbereitende Anwendungen ein.",
       "Bewerte die Vorteile lokaler Verarbeitung und weise darauf hin, dass keine Fragebögen oder Auswertungsdaten an externe KI-Dienste übertragen werden.",
@@ -68,15 +52,15 @@
     const footer = document.querySelector(".site-footer");
 
     header.innerHTML = `
-      <a class="brand" href="preview-v3/" aria-label="The Repetitive Company – V3 Startseite">
+      <a class="brand" href="./" aria-label="The Repetitive Company – Startseite">
         <img src="company-logo.png" alt="The Repetitive Company" width="1075" height="334" />
       </a>
       <nav class="header-nav" id="headerNav" aria-label="Seitennavigation">
-        <a href="preview-v3/#ablauf">DataTool</a>
-        <a href="preview-v3/#solutions">Anwendungen</a>
-        <a href="preview-v3/#datenschutz">Datenschutz</a>
-        <a href="preview-v3/#preis">Preis</a>
-        <a class="solutions-link" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
+        <a href="#ablauf">DataTool</a>
+        <a href="#solutions">Anwendungen</a>
+        <a href="#datenschutz">Datenschutz</a>
+        <a href="#preis">Preis</a>
+        <a class="solutions-link" href="datatool.html?demo=1">Demo ausprobieren</a>
       </nav>
       <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="headerNav">
         <span class="menu-toggle-icon" aria-hidden="true"><i></i><i></i><i></i></span>
@@ -92,13 +76,13 @@
         mühsames Abtippen und mit voller Kontrolle über jedes Ergebnis.
       </p>
       <div class="hero-actions">
-        <a class="cta-button hero-demo" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
-        <a class="hero-secondary" href="preview-v3/#solutions">Paket ansehen <span aria-hidden="true">↓</span></a>
+        <a class="cta-button hero-demo" href="datatool.html?demo=1">Demo ausprobieren</a>
+        <a class="hero-secondary" href="#solutions">Paket ansehen <span aria-hidden="true">↓</span></a>
       </div>
     `;
 
     const trust = document.createElement("aside");
-    trust.className = "v3-trust-bar";
+    trust.className = "trust-bar";
     trust.setAttribute("aria-label", "Produkteigenschaften");
     trust.innerHTML = `
       <span><i aria-hidden="true">✓</i> Lokal verarbeitet</span>
@@ -106,7 +90,7 @@
       <span><i aria-hidden="true">✓</i> Strukturierter Export</span>
     `;
     const workflowIntro = document.createElement("section");
-    workflowIntro.className = "v3-workflow-intro";
+    workflowIntro.className = "workflow-intro";
     workflowIntro.id = "ablauf";
     workflowIntro.innerHTML = `
       <p class="eyebrow">Ein klarer Ablauf</p>
@@ -119,7 +103,7 @@
     workflowIntro.after(trust);
 
     document.querySelectorAll(".story-try-link").forEach((link) => {
-      link.href = "datatool.html?demo=1&from=v3";
+      link.href = "datatool.html?demo=1";
       link.innerHTML = 'Demo ausprobieren <span aria-hidden="true">→</span>';
     });
     document.querySelector("#exportCopy h2").textContent = "Geprüfte Daten exportieren.";
@@ -207,8 +191,8 @@
       <h2>DataTool passend für Ihren Einsatz kennenlernen.</h2>
       <p>Lernen Sie den Ablauf in der interaktiven Demo kennen – von der erkannten Antwort bis zur gezielten Kontrolle.</p>
       <div class="outro-actions">
-        <a class="cta-button" href="datatool.html?demo=1&from=v3">Demo ausprobieren</a>
-        <a class="outro-secondary" href="preview-v3/#solutions">Paket ansehen</a>
+        <a class="cta-button" href="datatool.html?demo=1">Demo ausprobieren</a>
+        <a class="outro-secondary" href="#solutions">Paket ansehen</a>
       </div>
     `;
 
@@ -218,10 +202,6 @@
         <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a>
       </nav>
     `;
-
-    document.querySelectorAll("a[href]").forEach((link) => {
-      link.href = appendV3Context(link.getAttribute("href"));
-    });
 
     const reveal = document.querySelector("[data-scroll-reveal]");
     const revealText = reveal.textContent.trim();
@@ -244,11 +224,8 @@
     window.addEventListener("resize", updateReveal);
     updateReveal();
 
-    document.body.classList.remove("v3-loading");
-    document.body.classList.add("v3-ready");
-
     const animationScript = document.createElement("script");
-    animationScript.src = "preview-v3/animation.js";
+    animationScript.src = "site-animation.js?v=20260807";
     animationScript.addEventListener("load", () => {
       if (!window.location.hash) return;
       const targetId = decodeURIComponent(window.location.hash.slice(1));
@@ -263,19 +240,5 @@
     document.body.append(animationScript);
   };
 
-  fetch("index.html")
-    .then((response) => {
-      if (!response.ok) throw new Error(`V1 konnte nicht geladen werden (${response.status})`);
-      return response.text();
-    })
-    .then((html) => {
-      const source = new DOMParser().parseFromString(html, "text/html");
-      source.querySelectorAll("script").forEach((script) => script.remove());
-      document.body.innerHTML = source.body.innerHTML;
-      transformPage();
-    })
-    .catch((error) => {
-      document.querySelector(".v3-loader p").textContent = "V3 konnte nicht geladen werden.";
-      console.error(error);
-    });
+  transformPage();
 })();
