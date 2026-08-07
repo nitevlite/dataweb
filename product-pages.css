@@ -37,8 +37,8 @@ a {
   position: sticky;
   top: 0;
   z-index: 60;
-  min-height: 5.5rem;
-  padding: 0.8rem max(1.5rem, calc((100vw - 76rem) / 2));
+  min-height: 5.25rem;
+  padding: 0.8rem clamp(1.25rem, 4vw, 4rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -49,7 +49,7 @@ a {
 }
 
 .product-brand {
-  width: clamp(10rem, 16vw, 13.5rem);
+  width: clamp(9rem, 12vw, 10.5rem);
 }
 
 .product-brand img {
@@ -122,7 +122,7 @@ a {
 .product-hero {
   --product-color: var(--blue);
   position: relative;
-  min-height: calc(100svh - 5.5rem);
+  min-height: calc(100svh - 5.25rem);
   padding: clamp(4rem, 8vw, 7rem) max(1.5rem, calc((100vw - 76rem) / 2));
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -373,9 +373,8 @@ a {
 }
 
 .datatool-hero.demo-focus-active .product-carousel {
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
+  visibility: visible;
+  opacity: 1;
 }
 
 .product-visual {
@@ -792,8 +791,14 @@ a {
 .demo-focus-return {
   display: none;
   color: #fff !important;
-  border-color: #172033 !important;
-  background: #172033 !important;
+  border-color: #087df5 !important;
+  background: #087df5 !important;
+}
+
+.demo-focus-return:hover,
+.demo-focus-return:focus-visible {
+  border-color: #0065d6 !important;
+  background: #0065d6 !important;
 }
 
 .demo-focus-active .demo-focus-return {
