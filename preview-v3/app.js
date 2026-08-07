@@ -140,27 +140,27 @@
       </div>
       <div class="privacy-grid">
         <article class="privacy-card">
-          <div class="privacy-motion privacy-motion--local" aria-hidden="true">
-            <span class="local-device"><i class="local-header"></i><i class="local-scan"></i><b class="local-dot local-dot--one"></b><b class="local-dot local-dot--two"></b><b class="local-dot local-dot--three"></b></span>
-            <span class="motion-status"><i></i> Auf diesem Gerät</span>
+          <div class="privacy-motion privacy-motion--orbit" aria-hidden="true">
+            <span class="orbit-ring"></span>
+            <span class="orbit-particle"><i></i></span>
+            <span class="orbit-device"><i></i><b></b></span>
           </div>
           <h3>Vollständig lokal</h3><p>Die Anwendungen verarbeiten Ihre Dokumente und Ergebnisse direkt auf Ihrem Gerät.</p>
         </article>
         <article class="privacy-card">
-          <div class="privacy-motion privacy-motion--contained" aria-hidden="true">
-            <span class="contained-core"><i></i><i></i><i></i></span>
-            <span class="contained-route contained-route--left"><b></b></span><span class="contained-route contained-route--right"><b></b></span>
-            <span class="contained-edge contained-edge--left"></span><span class="contained-edge contained-edge--right"></span>
-            <span class="contained-lock">×</span>
+          <div class="privacy-motion privacy-motion--boundary" aria-hidden="true">
+            <span class="boundary-source"><i></i><i></i></span>
+            <span class="boundary-path"></span>
+            <span class="boundary-dot boundary-dot--one"></span><span class="boundary-dot boundary-dot--two"></span><span class="boundary-dot boundary-dot--three"></span>
+            <span class="boundary-limit"><i></i></span>
           </div>
           <h3>Keine externen Dienste</h3><p>Ihre Inhalte werden weder automatisch hochgeladen noch für fremde Dienste oder Modelle verwendet.</p>
         </article>
         <article class="privacy-card">
-          <div class="privacy-motion privacy-motion--control" aria-hidden="true">
-            <span class="control-head"><i></i><b>Kontrolliert</b></span>
-            <span class="control-row control-row--one"><i></i><b></b></span>
-            <span class="control-row control-row--two"><i></i><b></b></span>
-            <span class="control-row control-row--three"><i></i><b></b></span>
+          <div class="privacy-motion privacy-motion--approval" aria-hidden="true">
+            <span class="approval-card"><i></i><i></i><i></i></span>
+            <span class="approval-choice"><i>✓</i></span>
+            <span class="approval-pointer"></span>
           </div>
           <h3>Unter Ihrer Kontrolle</h3><p>Die lokale Verarbeitung unterstützt einen datensparsamen und nachvollziehbaren Arbeitsablauf.</p>
         </article>
