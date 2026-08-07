@@ -170,38 +170,38 @@ section[id] { scroll-margin-top: 5.75rem; }
 .privacy-section { background: #eaf2fb; }
 .privacy-intro h2 { font-size: clamp(2.35rem, 4.5vw, 4.35rem); }
 .privacy-card { border-color: rgb(8 125 245 / 14%); background: rgb(255 255 255 / 88%); box-shadow: 0 0.8rem 2rem rgb(23 32 51 / 5%); }
-.privacy-card h3 { margin-top: 0.55rem; }
+.privacy-card h3 { margin-top: 0.35rem; }
 .privacy-motion {
   position: relative;
-  width: 3.6rem;
-  height: 2.8rem;
+  width: 2.8rem;
+  height: 2.15rem;
   min-height: 0;
   overflow: visible;
 }
 .privacy-motion *, .privacy-motion *::before, .privacy-motion *::after { box-sizing: border-box; }
 
 .privacy-motion--loop, .privacy-motion--checked { display: grid; place-items: center; }
-.mini-loop { width: 2.25rem; height: 2.25rem; border: 1px solid #9dbfe3; border-radius: 50%; }
-.mini-loop-dot { position: absolute; width: 2.25rem; height: 2.25rem; animation: mini-orbit 3s linear infinite; animation-play-state: paused; }
-.mini-loop-dot i { position: absolute; top: -0.16rem; left: calc(50% - 0.2rem); width: 0.4rem; height: 0.4rem; border: 1px solid #fff; border-radius: 50%; background: var(--v3-blue); }
+.mini-loop { width: 1.65rem; height: 1.65rem; border: 1px solid #9dbfe3; border-radius: 50%; }
+.mini-loop-dot { position: absolute; width: 1.65rem; height: 1.65rem; animation: mini-orbit 3s linear infinite; animation-play-state: paused; }
+.mini-loop-dot i { position: absolute; top: -0.12rem; left: calc(50% - 0.15rem); width: 0.3rem; height: 0.3rem; border: 1px solid #fff; border-radius: 50%; background: var(--v3-blue); }
 
 .privacy-motion--blocked { display: flex; align-items: center; }
-.mini-track { position: absolute; left: 0.15rem; width: 2.65rem; height: 1px; background: #b5cce5; }
-.mini-travel-dot { position: absolute; left: 0.1rem; width: 0.42rem; height: 0.42rem; border-radius: 50%; background: var(--v3-blue); animation: mini-return 3s ease-in-out infinite; animation-play-state: paused; }
-.mini-x { position: absolute; left: 2.85rem; width: 0.72rem; height: 0.72rem; }
-.mini-x i { position: absolute; top: 0.33rem; left: 0.02rem; width: 0.68rem; height: 1.5px; border-radius: 99px; background: var(--v3-blue); transform: rotate(45deg); }
+.mini-track { position: absolute; left: 0.12rem; width: 2rem; height: 1px; background: #b5cce5; }
+.mini-travel-dot { position: absolute; left: 0.08rem; width: 0.32rem; height: 0.32rem; border-radius: 50%; background: var(--v3-blue); animation: mini-return 3s ease-in-out infinite; animation-play-state: paused; }
+.mini-x { position: absolute; left: 2.18rem; width: 0.56rem; height: 0.56rem; }
+.mini-x i { position: absolute; top: 0.25rem; left: 0.02rem; width: 0.52rem; height: 1.25px; border-radius: 99px; background: var(--v3-blue); transform: rotate(45deg); }
 .mini-x i:last-child { transform: rotate(-45deg); }
 
-.mini-check { width: 2.7rem; height: 2.7rem; overflow: visible; }
+.mini-check { width: 2.05rem; height: 2.05rem; overflow: visible; }
 .mini-check circle { fill: none; stroke: #9dbfe3; stroke-width: 1.25; }
-.mini-check path { fill: none; stroke: var(--v3-blue); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 24; stroke-dashoffset: 0; animation: mini-check-draw 3s ease-in-out infinite; animation-play-state: paused; }
+.mini-check path { fill: none; stroke: var(--v3-blue); stroke-width: 2.3; stroke-linecap: round; stroke-linejoin: round; opacity: 1; clip-path: inset(0 0 0 0); animation: mini-check-reveal 3s ease-in-out infinite; animation-play-state: paused; }
 
 .privacy-section.motion-visible .mini-loop-dot,
 .privacy-section.motion-visible .mini-travel-dot,
 .privacy-section.motion-visible .mini-check path { animation-play-state: running; }
 @keyframes mini-orbit { 0% { transform: rotate(0); } 68%, 100% { transform: rotate(360deg); } }
-@keyframes mini-return { 0%, 10% { transform: translateX(0); } 48%, 60% { transform: translateX(2.15rem); } 86%, 100% { transform: translateX(0); } }
-@keyframes mini-check-draw { 0%, 24% { stroke-dashoffset: 24; } 58%, 82% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 24; } }
+@keyframes mini-return { 0%, 10% { transform: translateX(0); } 48%, 60% { transform: translateX(1.63rem); } 86%, 100% { transform: translateX(0); } }
+@keyframes mini-check-reveal { 0%, 28% { opacity: 0; clip-path: inset(0 100% 0 0); } 34% { opacity: 1; clip-path: inset(0 100% 0 0); } 62%, 82% { opacity: 1; clip-path: inset(0 0 0 0); } 94%, 100% { opacity: 0; clip-path: inset(0 0 0 0); } }
 .privacy-note { margin-top: 2.75rem; }
 .privacy-note a { color: var(--v3-blue-dark); }
 
