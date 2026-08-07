@@ -51,7 +51,7 @@
       );
 
       const script = document.createElement("script");
-      script.src = "./product-interactions.js?v=20260807-7";
+      script.src = "./product-interactions.js?v=20260807-8";
       document.body.append(script);
     })
     .catch(() => {
