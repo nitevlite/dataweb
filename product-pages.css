@@ -2312,6 +2312,22 @@ a {
   letter-spacing: -0.06em;
 }
 
+.product-scroll-reveal {
+  color: #cbd1da;
+}
+
+.product-scroll-reveal .reveal-word {
+  display: inline-block;
+}
+
+.product-scroll-reveal .reveal-character {
+  transition: color 55ms linear;
+}
+
+.product-scroll-reveal .reveal-character.active {
+  color: var(--ink);
+}
+
 .benefit-grid {
   margin-top: 3rem;
   display: grid;
