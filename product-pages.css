@@ -232,6 +232,10 @@ a {
   transform: translateY(-50%);
 }
 
+.product-carousel-position {
+  display: none;
+}
+
 .product-carousel-arrow {
   position: absolute;
   top: 0;
@@ -2513,13 +2517,20 @@ a {
 
   .product-carousel-arrow {
     position: static;
-    width: min(10rem, 43vw);
-    height: 3.1rem;
-    padding: 0 0.85rem;
+    width: 100%;
+    max-width: 11rem;
+    height: 3.35rem;
+    padding: 0 1rem;
     display: flex;
-    gap: 0.55rem;
-    font-size: 0.75rem;
-    font-weight: 800;
+    justify-content: flex-start;
+    gap: 0.65rem;
+    border-color: color-mix(in srgb, var(--product-color) 24%, #dce3ec);
+    border-radius: 0.9rem;
+    color: #26334a;
+    background: linear-gradient(180deg, #fff, #f8faff);
+    box-shadow: 0 0.65rem 1.5rem rgb(23 32 51 / 9%);
+    font-size: 0.77rem;
+    font-weight: 850;
   }
 
   .product-carousel-arrow::after {
@@ -2531,19 +2542,65 @@ a {
 
   .product-carousel-arrow span {
     margin: 0;
-    font-size: 1.3rem;
+    color: var(--product-color);
+    font-size: 1.4rem;
+    font-weight: 650;
+  }
+
+  .product-carousel-arrow--next {
+    justify-self: end;
+    justify-content: flex-end;
+  }
+
+  .product-carousel-arrow--next span {
+    order: 2;
+  }
+
+  .product-carousel-arrow:hover,
+  .product-carousel-arrow:focus-visible {
+    color: #fff;
+    background: var(--product-color);
+    box-shadow: 0 0.8rem 1.8rem color-mix(in srgb, var(--product-color) 22%, transparent);
+  }
+
+  .product-carousel-arrow:hover span,
+  .product-carousel-arrow:focus-visible span {
+    color: #fff;
   }
 
   .product-carousel {
     position: static;
     inset: auto;
     width: 100%;
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-column: 1 / -1;
+    gap: 0.75rem;
+    transform: none;
+  }
+
+  .product-carousel-position {
+    min-height: 0.55rem;
     display: flex;
     grid-column: 1 / -1;
+    align-items: center;
     justify-content: center;
-    gap: 0.65rem;
-    transform: none;
+    gap: 0.42rem;
+  }
+
+  .product-carousel-position span {
+    width: 0.45rem;
+    height: 0.45rem;
+    display: block;
+    border-radius: 999px;
+    background: #cbd3df;
+    transition: width 180ms ease, background 180ms ease;
+  }
+
+  .product-carousel-position span.active {
+    width: 1.3rem;
+    background: var(--product-color);
   }
 
   .product-copy,
