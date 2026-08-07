@@ -731,7 +731,17 @@ a {
 }
 
 .questionnaire-demo-heading strong {
+  min-height: 1.35em;
+  display: block;
   font-size: clamp(0.78rem, 1.3vw, 0.96rem);
+  transition:
+    opacity 200ms ease,
+    transform 200ms ease;
+}
+
+.questionnaire-demo-heading strong.is-changing {
+  opacity: 0;
+  transform: translateY(-0.2rem);
 }
 
 .questionnaire-demo-heading button,
@@ -2937,6 +2947,10 @@ a {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .questionnaire-demo-heading strong {
+    transition: none;
   }
 
 }

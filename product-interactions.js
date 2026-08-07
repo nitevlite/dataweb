@@ -238,8 +238,36 @@
     const tutorialCard = tutorial?.querySelector(".demo-tutorial-card");
     const tutorialOpenButtons = [...demo.querySelectorAll("[data-tutorial-open]")];
     const tutorialCloseButtons = [...demo.querySelectorAll("[data-tutorial-close]")];
+    const instruction = demo.querySelector("[data-questionnaire-instruction]");
     const clickState = new WeakMap();
+    const instructionTexts = [
+      "Klicken Sie auf ein rotes Antwortfeld.",
+      "Klicken Sie dreimal auf ein Feld, um die ganze Zeile als Konflikt zu markieren.",
+      "Klicken Sie dreimal auf ein violettes Mehrfachauswahlfeld, um es abzuwählen.",
+      "Probieren Sie weitere Felder aus – oder starten Sie die Demo über „Zurücksetzen“ neu.",
+    ];
+    let instructionStep = 0;
+    let instructionTransition = 0;
     let tutorialReturnFocus = null;
+
+    const setInstruction = (step, { immediate = false } = {}) => {
+      if (!instruction || step === instructionStep && !immediate) return;
+      instructionStep = step;
+      const transition = ++instructionTransition;
+
+      if (immediate || reduceMotion.matches) {
+        instruction.classList.remove("is-changing");
+        instruction.textContent = instructionTexts[step];
+        return;
+      }
+
+      instruction.classList.add("is-changing");
+      window.setTimeout(() => {
+        if (transition !== instructionTransition) return;
+        instruction.textContent = instructionTexts[step];
+        requestAnimationFrame(() => instruction.classList.remove("is-changing"));
+      }, 200);
+    };
 
     const openTutorial = (trigger = null) => {
       if (!tutorial) return;
@@ -339,6 +367,11 @@
         }
         clickState.set(overlay, state);
 
+        if (instructionStep === 0) {
+          setInstruction(1);
+          state.count = 0;
+        }
+
         if (state.count === 3) {
           const clearAll = state.startedAllMarked;
           row?.classList.toggle("all-marked", !clearAll);
@@ -348,6 +381,11 @@
             ?.querySelectorAll("[data-answer-overlay]")
             .forEach((item) => item.classList.remove("confirmed"));
           state.count = 0;
+          if (!clearAll && instructionStep === 1) {
+            setInstruction(2);
+          } else if (clearAll && instructionStep === 2) {
+            setInstruction(3);
+          }
           return;
         }
 
@@ -366,6 +404,11 @@
         state.count = now - state.lastClick <= 800 ? state.count + 1 : 1;
         state.lastClick = now;
         clickState.set(overlay, state);
+
+        if (instructionStep === 0) {
+          setInstruction(1);
+          state.count = 0;
+        }
 
         if (state.count === 3) {
           overlay.classList.remove("confirmed");
@@ -392,6 +435,7 @@
         overlay.classList.remove("confirmed", "cleared"),
       );
       supportOverlays.forEach((overlay) => clickState.delete(overlay));
+      setInstruction(0, { immediate: true });
     });
 
   });
