@@ -1,9 +1,16 @@
 (() => {
-  const productPages = ["datatool.html", "pdf-toolkit.html", "eckensetzer.html"];
+  const contextPages = [
+    "datatool.html",
+    "pdf-toolkit.html",
+    "eckensetzer.html",
+    "impressum.html",
+    "datenschutz.html",
+    "agb.html",
+  ];
 
   const appendV3Context = (href) => {
     const url = new URL(href, document.baseURI);
-    if (!productPages.some((page) => url.pathname.endsWith(`/${page}`))) return href;
+    if (!contextPages.some((page) => url.pathname.endsWith(`/${page}`))) return href;
     url.searchParams.set("from", "v3");
     return `${url.pathname}${url.search}${url.hash}`;
   };
@@ -98,8 +105,6 @@
       <span><i aria-hidden="true">✓</i> Keine Cloud-Übertragung</span>
       <span><i aria-hidden="true">✓</i> Strukturierter Export</span>
     `;
-    intro.after(trust);
-
     const workflowIntro = document.createElement("section");
     workflowIntro.className = "v3-workflow-intro";
     workflowIntro.id = "ablauf";
@@ -107,10 +112,11 @@
       <p class="eyebrow">Ein klarer Ablauf</p>
       <h2 class="scroll-reveal" data-scroll-reveal>Vom ausgefüllten Fragebogen zum geprüften Datensatz.</h2>
       <p class="workflow-explainer">
-        Sie prüfen gezielt die Ergebnisse, bei denen eine Entscheidung notwendig ist – statt jede Antwort erneut zu übertragen.
+        DataTool übernimmt eindeutig erkannte Antworten automatisch. Sie prüfen gezielt nur jene Ergebnisse, bei denen eine Entscheidung notwendig ist, korrigieren Unklarheiten direkt im Kontext und erhalten anschließend einen verlässlichen Datensatz – statt jede Antwort erneut manuell zu übertragen.
       </p>
     `;
-    trust.after(workflowIntro);
+    intro.after(workflowIntro);
+    workflowIntro.after(trust);
 
     document.querySelectorAll(".story-try-link").forEach((link) => {
       link.href = "datatool.html?demo=1&from=v3";
@@ -133,12 +139,40 @@
         </p>
       </div>
       <div class="privacy-grid">
-        <article class="privacy-card"><span class="privacy-icon" aria-hidden="true">01</span><h3>Vollständig lokal</h3><p>Die Anwendungen verarbeiten Ihre Dokumente und Ergebnisse direkt auf Ihrem Gerät.</p></article>
-        <article class="privacy-card"><span class="privacy-icon" aria-hidden="true">02</span><h3>Keine externen Dienste</h3><p>Ihre Inhalte werden weder automatisch hochgeladen noch für fremde Dienste oder Modelle verwendet.</p></article>
-        <article class="privacy-card"><span class="privacy-icon" aria-hidden="true">03</span><h3>Unter Ihrer Kontrolle</h3><p>Die lokale Verarbeitung unterstützt einen datensparsamen und nachvollziehbaren Arbeitsablauf.</p></article>
+        <article class="privacy-card">
+          <div class="privacy-motion privacy-motion--local" aria-hidden="true">
+            <span class="local-device"><i class="local-header"></i><i class="local-scan"></i><b class="local-dot local-dot--one"></b><b class="local-dot local-dot--two"></b><b class="local-dot local-dot--three"></b></span>
+            <span class="motion-status"><i></i> Auf diesem Gerät</span>
+          </div>
+          <h3>Vollständig lokal</h3><p>Die Anwendungen verarbeiten Ihre Dokumente und Ergebnisse direkt auf Ihrem Gerät.</p>
+        </article>
+        <article class="privacy-card">
+          <div class="privacy-motion privacy-motion--contained" aria-hidden="true">
+            <span class="contained-core"><i></i><i></i><i></i></span>
+            <span class="contained-route contained-route--left"><b></b></span><span class="contained-route contained-route--right"><b></b></span>
+            <span class="contained-edge contained-edge--left"></span><span class="contained-edge contained-edge--right"></span>
+            <span class="contained-lock">×</span>
+          </div>
+          <h3>Keine externen Dienste</h3><p>Ihre Inhalte werden weder automatisch hochgeladen noch für fremde Dienste oder Modelle verwendet.</p>
+        </article>
+        <article class="privacy-card">
+          <div class="privacy-motion privacy-motion--control" aria-hidden="true">
+            <span class="control-head"><i></i><b>Kontrolliert</b></span>
+            <span class="control-row control-row--one"><i></i><b></b></span>
+            <span class="control-row control-row--two"><i></i><b></b></span>
+            <span class="control-row control-row--three"><i></i><b></b></span>
+          </div>
+          <h3>Unter Ihrer Kontrolle</h3><p>Die lokale Verarbeitung unterstützt einen datensparsamen und nachvollziehbaren Arbeitsablauf.</p>
+        </article>
       </div>
       <p class="privacy-note">Weitere Einzelheiten finden Sie in unserer <a href="datenschutz.html">Datenschutzinformation für die Anwendungen</a>.</p>
     `;
+
+    const privacyMotionObserver = new IntersectionObserver(
+      ([entry]) => privacy.classList.toggle("motion-visible", entry.isIntersecting),
+      { threshold: 0.2 },
+    );
+    privacyMotionObserver.observe(privacy);
 
     pricing.innerHTML = `
       <div class="pricing-copy">
@@ -194,14 +228,18 @@
     });
 
     const reveal = document.querySelector("[data-scroll-reveal]");
-    const words = reveal.textContent.trim().split(/\s+/);
-    reveal.innerHTML = words.map((word) => `<span>${word}</span>`).join(" ");
+    const revealText = reveal.textContent.trim();
+    const characters = Array.from(revealText);
+    reveal.setAttribute("aria-label", revealText);
+    reveal.innerHTML = characters
+      .map((character) => `<span aria-hidden="true">${character === " " ? "&nbsp;" : character}</span>`)
+      .join("");
 
     const updateReveal = () => {
       const rect = reveal.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.82 - rect.top) / (window.innerHeight * 0.58)));
-      const activeCount = Math.round(progress * words.length);
-      reveal.querySelectorAll("span").forEach((word, index) => word.classList.toggle("active", index < activeCount));
+      const progress = Math.max(0, Math.min(1, (window.innerHeight * 0.82 - rect.top) / (window.innerHeight * 0.34)));
+      const activeCount = Math.round(progress * characters.length);
+      reveal.querySelectorAll("span").forEach((character, index) => character.classList.toggle("active", index < activeCount));
     };
     window.addEventListener("scroll", updateReveal, { passive: true });
     window.addEventListener("resize", updateReveal);
@@ -212,6 +250,17 @@
 
     const animationScript = document.createElement("script");
     animationScript.src = "preview-v3/animation.js";
+    animationScript.addEventListener("load", () => {
+      if (!window.location.hash) return;
+      const targetId = decodeURIComponent(window.location.hash.slice(1));
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        const target = document.getElementById(targetId);
+        if (!target) return;
+        document.documentElement.style.scrollBehavior = "auto";
+        target.scrollIntoView({ block: "start" });
+        requestAnimationFrame(() => document.documentElement.style.removeProperty("scroll-behavior"));
+      }));
+    });
     document.body.append(animationScript);
   };
 
