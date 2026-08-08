@@ -98,7 +98,8 @@
       <p class="eyebrow">Ein klarer Ablauf</p>
       <h2 class="scroll-reveal" data-scroll-reveal>Vom ausgefüllten Fragebogen zum geprüften Datensatz.</h2>
       <p class="workflow-explainer">
-        DataTool übernimmt erkannte Antworten in eine übersichtliche Arbeitsansicht. Sie können jederzeit alle Ergebnisse kontrollieren, anpassen oder bestätigen und entscheiden selbst, wo eine genauere Prüfung nötig ist. Jede Antwort bleibt im Kontext des Fragebogens nachvollziehbar – ohne sie erneut manuell übertragen zu müssen.
+        DataTool erkennt Antworten automatisch und zeigt sie direkt am Original.
+        Unklare Ergebnisse prüfen und korrigieren Sie gezielt vor dem Export.
       </p>
     `;
     intro.after(workflowIntro);
@@ -112,17 +113,12 @@
     document.querySelector("#exportCopy > p:not(.step-label)").textContent =
       "Übergeben Sie die strukturierten Ergebnisse an Tabellen, Statistikprogramme, Dokumentationen oder weitere lokale Arbeitsschritte.";
 
-    suite.before(buildAiSection());
+    privacy.before(buildAiSection());
 
     privacy.innerHTML = `
       <div class="privacy-intro">
         <p class="eyebrow">Datenschutz von Anfang an</p>
-        <h2 id="privacy-title">Ihre Daten bleiben dort, wo sie hingehören.</h2>
-        <p>
-          Erkennung, Kontrolle und Export erfolgen innerhalb Ihrer eigenen
-          Arbeitsumgebung. Dokumente, Antworten und Auswertungsdaten werden <u>nicht</u>
-          automatisch an uns, externe Cloud-Dienste oder KI-Anbieter übertragen.
-        </p>
+        <h2 class="privacy-marker-heading" id="privacy-title" data-marker-heading>Ihre Daten bleiben dort, wo sie hingehören.</h2>
       </div>
       <div class="privacy-grid">
         <article class="privacy-card">
@@ -149,6 +145,98 @@
       </div>
       <p class="privacy-note">Weitere Einzelheiten finden Sie in unserer <a href="datenschutz.html">Datenschutzinformation für die Anwendungen</a>.</p>
     `;
+
+    const markerHeading = privacy.querySelector("[data-marker-heading]");
+    const markerText = markerHeading.textContent.trim();
+    markerHeading.setAttribute("aria-label", markerText);
+
+    const buildMarkerLines = () => {
+      const words = markerText.split(/\s+/);
+      const measurementFragment = document.createDocumentFragment();
+
+      words.forEach((word, index) => {
+        const wordElement = document.createElement("span");
+        wordElement.className = "privacy-marker-measure-word";
+        wordElement.setAttribute("aria-hidden", "true");
+        wordElement.textContent = word;
+        measurementFragment.append(wordElement);
+        if (index < words.length - 1) measurementFragment.append(" ");
+      });
+      markerHeading.replaceChildren(measurementFragment);
+
+      const lines = [];
+      let currentLineTop = null;
+      markerHeading.querySelectorAll(".privacy-marker-measure-word").forEach((wordElement) => {
+        const wordTop = wordElement.offsetTop;
+        if (currentLineTop === null || Math.abs(wordTop - currentLineTop) > 2) {
+          currentLineTop = wordTop;
+          lines.push([]);
+        }
+        lines.at(-1).push(wordElement.textContent);
+      });
+
+      const lineFragment = document.createDocumentFragment();
+      lines.forEach((lineWords) => {
+        const line = document.createElement("span");
+        line.className = "privacy-marker-line";
+        line.setAttribute("aria-hidden", "true");
+        line.textContent = lineWords.join(" ");
+        lineFragment.append(line);
+      });
+      markerHeading.replaceChildren(lineFragment);
+    };
+    buildMarkerLines();
+
+    const reducedMarkerMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let markerScrollFrame = 0;
+    const updateMarker = () => {
+      markerScrollFrame = 0;
+      const markerLines = [...markerHeading.querySelectorAll(".privacy-marker-line")];
+      const rect = markerHeading.getBoundingClientRect();
+      const startLine = window.innerHeight * 0.82;
+      const endLine = window.innerHeight * 0.4;
+      const progress = reducedMarkerMotion.matches
+        ? 1
+        : Math.max(0, Math.min(1, (startLine - rect.top) / (startLine - endLine)));
+      const totalCharacters = markerLines.reduce((total, line) => total + line.textContent.length, 0);
+      const revealedCharacters = Math.floor(progress * totalCharacters);
+      let precedingCharacters = 0;
+
+      markerLines.forEach((line) => {
+        const lineCharacters = line.textContent.length;
+        const visibleCharacters = Math.max(
+          0,
+          Math.min(lineCharacters, revealedCharacters - precedingCharacters),
+        );
+        let lineProgress = visibleCharacters === lineCharacters ? 1 : 0;
+
+        if (visibleCharacters > 0 && visibleCharacters < lineCharacters && line.firstChild) {
+          const visibleRange = document.createRange();
+          visibleRange.setStart(line.firstChild, 0);
+          visibleRange.setEnd(line.firstChild, visibleCharacters);
+          lineProgress = visibleRange.getBoundingClientRect().width / line.getBoundingClientRect().width;
+        }
+
+        line.style.setProperty("--marker-progress", lineProgress.toFixed(3));
+        precedingCharacters += lineCharacters;
+      });
+    };
+    const requestMarkerUpdate = () => {
+      if (markerScrollFrame) return;
+      markerScrollFrame = requestAnimationFrame(updateMarker);
+    };
+
+    let markerResizeFrame = 0;
+    window.addEventListener("resize", () => {
+      cancelAnimationFrame(markerResizeFrame);
+      markerResizeFrame = requestAnimationFrame(() => {
+        buildMarkerLines();
+        updateMarker();
+      });
+    });
+    window.addEventListener("scroll", requestMarkerUpdate, { passive: true });
+    reducedMarkerMotion.addEventListener?.("change", requestMarkerUpdate);
+    updateMarker();
 
     const privacyMotionObserver = new IntersectionObserver(
       ([entry]) => privacy.classList.toggle("motion-visible", entry.isIntersecting),
