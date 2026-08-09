@@ -20,7 +20,7 @@ DataTool refers both to the complete package and to its central questionnaire-re
 - The complete package starts at EUR 3,600 net; the final price depends on scope and number of workstations.
 - The package includes 12 months of updates and personal support, setup and introduction, and assistance with the first questionnaire.
 - There are no ongoing charges per questionnaire or processed page.
-- In a recent operational test, the DataTool workflow was approximately ten times faster than the previous manual process. This is a scenario-specific practical result, not a universal performance guarantee.
+- Users report approximately 73 to 90 percent less time spent with DataTool than with their previous manual workflow, depending on the use case. These are scenario-specific practical results, not a universal performance guarantee.
 - The same operational use produced fewer manual transfer errors. An exact cross-project error rate has not yet been quantified.
 - Every automatically recognized answer can be compared with the original questionnaire and corrected by a user. This enables complete human review but does not claim 100 percent automatic recognition accuracy.
 - DataTool can be configured for almost any standardized questionnaire or recurring PDF form with a consistent layout and defined answer areas, including checkboxes, single- and multiple-choice fields, rating scales, matrices, evaluations, feedback forms and checklists. Free-text notes can be captured manually; automatic readability depends on the handwriting and scan quality.

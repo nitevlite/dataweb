@@ -101,6 +101,10 @@
         DataTool erkennt Antworten automatisch und zeigt sie direkt am Original.
         Unklare Ergebnisse prüfen und korrigieren Sie gezielt vor dem Export.
       </p>
+      <a class="workflow-contact-cta" href="./kontakt.html">
+        Beratung anfragen
+        <span aria-hidden="true">→</span>
+      </a>
     `;
     intro.after(workflowIntro);
     workflowIntro.after(trust);
@@ -279,9 +283,9 @@
     outro.innerHTML = `
       <p class="eyebrow">Direkt kennenlernen</p>
       <h2>DataTool passend für Ihren Einsatz kennenlernen.</h2>
-      <p>Lernen Sie den Ablauf in der interaktiven Demo kennen – von der erkannten Antwort bis zur gezielten Kontrolle.</p>
+      <p>Beschreiben Sie uns kurz Ihren Fragebogen-Workflow. Wir klären persönlich, wie DataTool zu Ihrem Einsatz und Ihren Anforderungen passt.</p>
       <div class="outro-actions">
-        <a class="cta-button" href="demo/?step=1">Demo ausprobieren</a>
+        <a class="cta-button" href="kontakt.html">Beratung anfragen</a>
         <a class="outro-secondary" href="#solutions">Paket ansehen</a>
       </div>
     `;
@@ -289,7 +293,7 @@
     footer.innerHTML = `
       <span>© 2026 The Repetitive Company</span>
       <nav aria-label="Rechtliche Informationen">
-        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a>
+        <a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a><a href="agb.html">AGB</a><a href="kontakt.html">Kontakt</a>
       </nav>
     `;
 
