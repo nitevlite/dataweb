@@ -319,45 +319,54 @@
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     if (workflowList && workflowSteps.length) {
+      const previousButton = document.querySelector(".workflow-arrow--prev");
+      const nextButton = document.querySelector(".workflow-arrow--next");
+      const positionLabel = document.querySelector(".workflow-position");
       let workflowFrame = 0;
+      let currentStep = 0;
 
       const updateWorkflow = () => {
         workflowFrame = 0;
+        const listLeft = workflowList.getBoundingClientRect().left;
+        currentStep = workflowSteps.reduce((closestIndex, step, index) => {
+          const currentDistance = Math.abs(step.getBoundingClientRect().left - listLeft);
+          const closestDistance = Math.abs(workflowSteps[closestIndex].getBoundingClientRect().left - listLeft);
+          return currentDistance < closestDistance ? index : closestIndex;
+        }, 0);
 
-        if (reducedMotion.matches) {
-          workflowList.style.setProperty("--workflow-progress", "1");
-          workflowSteps.forEach((step) => {
-            step.classList.add("is-reached");
-            step.classList.remove("is-current");
-          });
-          return;
-        }
-
-        const rect = workflowList.getBoundingClientRect();
-        const startLine = window.innerHeight * 0.78;
-        const endLine = window.innerHeight * 0.3;
-        const travel = rect.height + startLine - endLine;
-        const progress = Math.max(0, Math.min(1, (startLine - rect.top) / travel));
-        const reachedIndex = Math.min(
-          workflowSteps.length - 1,
-          Math.floor(progress * (workflowSteps.length + 0.35) - 0.15),
-        );
-
-        workflowList.style.setProperty("--workflow-progress", progress.toFixed(3));
         workflowSteps.forEach((step, index) => {
-          step.classList.toggle("is-reached", index <= reachedIndex);
-          step.classList.toggle("is-current", index === reachedIndex);
+          const isCurrent = index === currentStep;
+          step.classList.toggle("is-current", isCurrent);
+          step.toggleAttribute("aria-current", isCurrent);
         });
+        if (positionLabel) positionLabel.textContent = `${String(currentStep + 1).padStart(2, "0")} / ${String(workflowSteps.length).padStart(2, "0")}`;
+        if (previousButton) previousButton.disabled = currentStep === 0;
+        if (nextButton) nextButton.disabled = currentStep === workflowSteps.length - 1;
       };
 
       const requestWorkflowUpdate = () => {
-        if (workflowFrame) return;
-        workflowFrame = requestAnimationFrame(updateWorkflow);
+        if (!workflowFrame) workflowFrame = requestAnimationFrame(updateWorkflow);
       };
 
-      window.addEventListener("scroll", requestWorkflowUpdate, { passive: true });
+      const scrollToStep = (index) => {
+        const target = workflowSteps[Math.max(0, Math.min(workflowSteps.length - 1, index))];
+        workflowList.scrollTo({
+          left: target.offsetLeft - workflowList.offsetLeft,
+          behavior: "auto",
+        });
+      };
+
+      previousButton?.addEventListener("click", () => scrollToStep(currentStep - 1));
+      nextButton?.addEventListener("click", () => scrollToStep(currentStep + 1));
+      workflowList.addEventListener("keydown", (event) => {
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+        event.preventDefault();
+        if (event.key === "Home") scrollToStep(0);
+        else if (event.key === "End") scrollToStep(workflowSteps.length - 1);
+        else scrollToStep(currentStep + (event.key === "ArrowRight" ? 1 : -1));
+      });
+      workflowList.addEventListener("scroll", requestWorkflowUpdate, { passive: true });
       window.addEventListener("resize", requestWorkflowUpdate);
-      reducedMotion.addEventListener?.("change", requestWorkflowUpdate);
       updateWorkflow();
     }
 
